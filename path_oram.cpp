@@ -10,10 +10,14 @@
 #include <sstream>
 #include <algorithm>
 
-#define MAX_TREE_SIZE 65536
 
-//command format: [store|operate] <file_name>
-
+//command format: [store|operate] <file_name> [-d]
+//===============================
+// test files format:
+// store: <position> <value>
+//===============================
+// operate: R <position> , or W <position> <value>
+// where R is read operation and W is write operation
 
 int main() {
     Tree oramTree(0);
