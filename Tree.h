@@ -11,6 +11,8 @@
 #include <climits>
 #include <iostream>
 
+#define MAX_TREE_SIZE 65535
+
 enum Operation {
     READ,
     WRITE
