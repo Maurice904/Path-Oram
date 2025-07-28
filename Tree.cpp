@@ -57,9 +57,12 @@ std::string Node::toString() const {
     return result;
 }
 
-Tree::Tree(size_t nodeCount, size_t bucketSize) {
+Tree::Tree(size_t dataSize, size_t bucketSize) {
     size_t size = 0;
+    size_t nodeCount = (dataSize + bucketSize - 1) / bucketSize;
     treeLevel = 0;
+    capacity = nodeCount * bucketSize;
+    occupied = 0;
     while (nodeCount > size) {
         size = (size << 1) | 1;
         treeLevel++;
@@ -104,12 +107,23 @@ bool Tree::isSamePath(size_t curNode, size_t leafNode) {
 }
 
 std::optional<int> Tree::access(Operation op, size_t position, int value, bool debugMode) {
+    if (debugMode) {
+        std::cout<<"occupied: " << occupied << ", capacity: " << capacity << std::endl;
+    }
     if (positionMap.find(position) != positionMap.end()) {
         size_t prevPath = positionMap[position];
         readFromPath(prevPath);
     } else {
+        if (op == Operation::READ) {
+            std::cerr << "Position not found in positionMap for READ operation." << std::endl;
+            return std::nullopt;
+        } else if (op == Operation::WRITE && occupied >= capacity) {
+            std::cerr << "Tree is full, cannot write new data." << std::endl;
+            return std::nullopt;
+        }
         readFromPath(randomInt(leafStartIndex, nodes.size() - 1));
         stash.push_back(Block(value, position, false));
+        occupied++;
     }
 
     size_t newPath = randomInt(leafStartIndex, nodes.size() - 1);
@@ -178,7 +192,7 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
         stash.pop_front();
         if (isSamePath(evictPathID, positionMap[stashBlock.originalPosition])) {
             if (debugMode) {
-                std::cout << "Evict block from stash to curNode[" << evictPathID << "]"<< std::endl;
+                std::cout << "Evict cur block"<<stashBlock.toString()<<" from stash to curNode[" << evictPathID << "]"<< std::endl;
             }
             curNode.put(stashBlock);
         } else {

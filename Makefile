@@ -1,17 +1,17 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -g
 TARGET = path_oram
-SOURCES = Tree.cpp path_oram.cpp
+SOURCES = Tree.cpp Forest.cpp path_oram.cpp
 
 all: $(TARGET)
 
 $(TARGET): $(SOURCES)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SOURCES)
+    $(CXX) $(CXXFLAGS) -o $(TARGET) $(SOURCES)
 
 clean:
-	rm -f $(TARGET) $(TARGET).exe
+    rm -f $(TARGET) $(TARGET).exe
 
 test: $(TARGET)
-	./$(TARGET)
+    ./$(TARGET)
 
 .PHONY: all clean test

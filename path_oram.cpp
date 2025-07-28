@@ -1,4 +1,4 @@
-#include "Tree.h"
+#include "Forest.h"
 
 #include <fstream>
 #include <iostream>
@@ -20,7 +20,7 @@
 // where R is read operation and W is write operation
 
 int main() {
-    Tree oramTree(0);
+    Forest oramTrees(0);
     bool loaded = false;
     while (true) {
         std::string command;
@@ -70,15 +70,15 @@ int main() {
                     data.push_back({position, value});
                 }
             }
-            oramTree = Tree(data.size()/bucketSize, bucketSize);
+            oramTrees = Forest(data.size(), bucketSize);
             for (const auto& entry : data) {
-                oramTree.access(WRITE, entry.first, entry.second);
+                oramTrees.put(entry.first, entry.second, debugMode);
             }
             loaded = true;
             inputFile.close();
             std::cout<<args[1]<< " loaded successfully with " << data.size() << " entries." << std::endl;
             if (debugMode) {
-                std::cout<< oramTree.toString() << std::endl;
+                std::cout<< oramTrees.toString() << std::endl;
             }
         } else if (args[0] == "operate") {
             if (!loaded) {
@@ -104,7 +104,7 @@ int main() {
                     if (operation == "R") {
                         size_t position;
                         if (lineStream >> position) {
-                            auto result = oramTree.access(READ, position);
+                            auto result = oramTrees.get(position, debugMode);
                             if (result.has_value()) {
                                 std::cout << "READ pos " << position << ": " << result.value() << std::endl;
                             } else {
@@ -118,7 +118,7 @@ int main() {
                         size_t position;
                         int value;
                         if (lineStream >> position >> value) {
-                            oramTree.access(WRITE, position, value, debugMode);
+                            oramTrees.put(position, value, debugMode);
                             std::cout << "WRITE pos " << position << " val " << value << ": DONE" << std::endl;
                             opCount++;
                         } else {
@@ -128,7 +128,7 @@ int main() {
                         std::cerr << "Unknown operation: " << operation << " in line: " << line << std::endl;
                     }
                     if (debugMode) {
-                        std::cout << oramTree.toString() << std::endl;
+                        std::cout << oramTrees.toString() << std::endl;
                     }
                 }
             }

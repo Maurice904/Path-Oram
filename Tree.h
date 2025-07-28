@@ -49,6 +49,8 @@ public:
     std::deque<Block> stash;
     size_t leafStartIndex;
     size_t treeLevel;
+    size_t capacity;
+    size_t occupied;
 
     Tree(size_t nodeCount, size_t bucketSize = 4);
     size_t getParent(size_t children);
