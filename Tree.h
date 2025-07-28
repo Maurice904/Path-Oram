@@ -9,6 +9,7 @@
 #include <optional>
 #include <deque>
 #include <climits>
+#include <iostream>
 
 enum Operation {
     READ,
@@ -23,6 +24,7 @@ struct Block {
     bool isDummy;
     Block();
     Block(int value, size_t originalPosition, bool isDummy = false);
+    std::string toString() const;
 };
 
 class Node {
@@ -30,12 +32,12 @@ public:
     std::vector<Block> buckets;
     size_t occupied;
     size_t size;
-    bool isData;
 
     Node(size_t bucketSize = 4);
     void clear();
     void put(Block& block);
     void remove(size_t index);
+    std::string toString() const;
 };
 
 class Tree {
@@ -50,7 +52,8 @@ public:
     size_t getParent(size_t children);
     void readFromPath(size_t pathID);
     bool isSamePath(size_t curNode, size_t leafNode);
-    std::optional<int> access(Operation op, size_t position, int value = 0);
+    std::optional<int> access(Operation op, size_t position, int value = 0, bool debugMode = false);
+    std::string toString() const;
 };
 
 #endif // TREE_H
