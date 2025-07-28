@@ -2,8 +2,8 @@
 
 Forest::Forest(size_t dataSize, size_t bucketSize) {
     if (dataSize > MAX_TREE_SIZE) {
-        int treeCount = (dataSize + MAX_TREE_SIZE - 1) / MAX_TREE_SIZE;
-        for (int i = 0; i < treeCount; ++i) {
+        size_t treeCount = (dataSize + MAX_TREE_SIZE - 1) / MAX_TREE_SIZE;
+        for (size_t i = 0; i < treeCount; ++i) {
             trees.push_back(Tree(MAX_TREE_SIZE, bucketSize));
         }
     } else {
@@ -34,6 +34,18 @@ std::optional<int> Forest::get(size_t position, bool debugMode) {
     }
     return std::nullopt;
 }
+
+std::string Forest::getSizes() const {
+    std::string ret;
+    ret = "Forest has " + std::to_string(trees.size()) + " trees.\n";
+    ret += "Each tree has " + std::to_string(trees[0].capacity) + " capacity.\n";
+    for (size_t i = 0; i < trees.size(); i ++) {
+        ret += "Tree[" +std::to_string(i)+ "] have occupied: " + std::to_string(trees[i].occupied) +
+               ", capacity: " + std::to_string(trees[i].capacity) +" stash size: " + std::to_string(trees[i].stash.size()) + "\n";
+    }
+    return ret;
+}
+
 
 std::string Forest::toString() const {
     std::string result;

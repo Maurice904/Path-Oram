@@ -35,7 +35,7 @@ int main() {
         while (iss >> arg) {
             args.push_back(arg);
         }
-        
+
         bool debugMode = false;
         auto debugIt = std::find(args.begin(), args.end(), "-d");
         if (debugIt != args.end()) {
@@ -71,14 +71,17 @@ int main() {
                 }
             }
             oramTrees = Forest(data.size(), bucketSize);
+            size_t position = 0;
             for (const auto& entry : data) {
-                oramTrees.put(entry.first, entry.second, debugMode);
+                oramTrees.put(entry.first, entry.second);
+                position++;
+                std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
             }
             loaded = true;
             inputFile.close();
             std::cout<<args[1]<< " loaded successfully with " << data.size() << " entries." << std::endl;
             if (debugMode) {
-                std::cout<< oramTrees.toString() << std::endl;
+                std::cout<<oramTrees.toString() << std::endl;
             }
         } else if (args[0] == "operate") {
             if (!loaded) {
@@ -136,6 +139,8 @@ int main() {
             std::cout << "Processed " << opCount << " operations from " << fileName << std::endl;
 
 
+        } else if (args[0] == "size") {
+            std::cout << oramTrees.getSizes() << std::endl;
         } else {
             std::cout << "Unknown command: " << command << std::endl;
         }

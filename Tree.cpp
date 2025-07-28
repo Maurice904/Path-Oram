@@ -61,7 +61,6 @@ Tree::Tree(size_t dataSize, size_t bucketSize) {
     size_t size = 0;
     size_t nodeCount = (dataSize + bucketSize - 1) / bucketSize;
     treeLevel = 0;
-    capacity = nodeCount * bucketSize;
     occupied = 0;
     while (nodeCount > size) {
         size = (size << 1) | 1;
@@ -70,6 +69,7 @@ Tree::Tree(size_t dataSize, size_t bucketSize) {
     for (size_t i = 0; i < size; i ++) {
         nodes.emplace_back(Node(bucketSize));
     }
+    capacity = size * bucketSize;
     leafStartIndex = size/2;
 }
 
