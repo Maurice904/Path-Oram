@@ -1,10 +1,10 @@
 #include "Forest.h"
 
 Forest::Forest(size_t dataSize, size_t bucketSize) {
-    if (dataSize > MAX_TREE_SIZE) {
+    if ((dataSize + bucketSize - 1)/bucketSize > MAX_TREE_SIZE) {
         size_t treeCount = (dataSize + MAX_TREE_SIZE - 1) / MAX_TREE_SIZE;
         for (size_t i = 0; i < treeCount; ++i) {
-            trees.push_back(Tree(MAX_TREE_SIZE, bucketSize));
+            trees.push_back(Tree(MAX_TREE_SIZE, bucketSize, (dataSize + treeCount - 1) / treeCount));
         }
     } else {
         trees.push_back(Tree(dataSize, bucketSize));

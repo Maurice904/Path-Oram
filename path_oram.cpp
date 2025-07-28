@@ -19,6 +19,18 @@
 // operate: R <position> , or W <position> <value>
 // where R is read operation and W is write operation
 
+
+void writeFileTo(const std::string& fileName, const std::string& content) {
+    std::ofstream outputFile(fileName);
+    if (outputFile.is_open()) {
+        outputFile << content;
+        outputFile.close();
+        std::cout << "Content written to " << fileName << std::endl;
+    } else {
+        std::cerr << "Error opening file: " << fileName << std::endl;
+    }
+}
+
 int main() {
     Forest oramTrees(0);
     bool loaded = false;
@@ -139,11 +151,25 @@ int main() {
             std::cout << "Processed " << opCount << " operations from " << fileName << std::endl;
 
 
-        } else if (args[0] == "size") {
-            std::cout << oramTrees.getSizes() << std::endl;
+        } else if (args[0] == "print") {
+            if (args.size() < 2) {
+                std::cerr << "Usage: print <ITEMS>"<<std::endl;
+            } else if (args[1] == "trees") {
+                if (args.size() < 3) {
+                    std::cout<< oramTrees.toString() << std::endl;
+                } else {
+                    writeFileTo(args[2], oramTrees.toString());
+                }
+            } else if (args[1] == "sizes") {
+                std::cout << oramTrees.getSizes() << std::endl;
+            } else {
+                std::cerr << "Unknown print command: " << args[1] << std::endl;
+            }
+
         } else {
             std::cout << "Unknown command: " << command << std::endl;
         }
     }
 
 }
+

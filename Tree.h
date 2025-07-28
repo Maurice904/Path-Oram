@@ -52,12 +52,14 @@ public:
     size_t capacity;
     size_t occupied;
 
-    Tree(size_t nodeCount, size_t bucketSize = 4);
+    Tree(size_t nodeCount, size_t bucketSize = 4, std::optional<int> preDesignedCap = std::nullopt);
     size_t getParent(size_t children);
     void readFromPath(size_t pathID);
     bool isSamePath(size_t curNode, size_t leafNode);
     std::optional<int> access(Operation op, size_t position, int value = 0, bool debugMode = false);
     std::string toString() const;
+    void evict();
+    void emptyStashTo(size_t nodeID);
 };
 
 #endif // TREE_H
