@@ -22,39 +22,44 @@ int randomInt(int min, int max);
 
 struct Block {
     int value;
-    size_t originalPosition;
+    uint32_t originalPosition;
     bool isDummy;
     Block();
-    Block(int value, size_t originalPosition, bool isDummy = false);
+    Block(int value, uint32_t originalPosition, bool isDummy = false);
     std::string toString() const;
 };
 
 class Node {
 public:
     std::vector<Block> buckets;
-    size_t occupied;
-    size_t size;
+    uint32_t occupied;
+    uint32_t size;
 
-    Node(size_t bucketSize = 4);
+    Node(uint32_t bucketSize = 4);
     void clear();
     void put(Block& block);
-    void remove(size_t index);
+    void remove(uint32_t index);
     std::string toString() const;
 };
 
 class Tree {
 public:
     std::vector<Node> nodes;
-    std::unordered_map<size_t, size_t> positionMap;
+    std::unordered_map<uint32_t, uint32_t> positionMap;
     std::deque<Block> stash;
-    size_t leafStartIndex;
-    size_t treeLevel;
+    uint32_t leafStartIndex;
+    uint32_t treeLevel;
 
-    Tree(size_t nodeCount, size_t bucketSize = 4);
-    size_t getParent(size_t children);
-    void readFromPath(size_t pathID);
-    bool isSamePath(size_t curNode, size_t leafNode);
-    std::optional<int> access(Operation op, size_t position, int value = 0, bool debugMode = false);
+    Tree(uint32_t leafCount, uint32_t bucketSize = 4);
+    uint32_t getParent(uint32_t children) const;
+    std::vector<uint32_t> getPath(uint32_t leafID) const;  
+    void readFromPath(uint32_t pathID);
+    void readFromNodes(const std::vector<uint32_t>& nodeIDs);
+    bool isSamePath(uint32_t curNode, uint32_t leafNode) const;
+    std::optional<int> access(Operation op,
+                            uint32_t position,
+                            int   value     = 0,
+                            bool  debugMode = false);
     std::string toString() const;
 };
 
