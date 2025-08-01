@@ -114,8 +114,9 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     if (debugMode) {
         std::cout<<"occupied: " << occupied << ", capacity: " << capacity << std::endl;
     }
+    size_t prevPath = leafStartIndex;
     if (positionMap.find(position) != positionMap.end()) {
-        size_t prevPath = positionMap[position];
+        prevPath = positionMap[position];
         readFromPath(prevPath);
     } else {
         if (op == Operation::READ) {
@@ -125,7 +126,8 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
             std::cerr << "Tree is full, cannot write new data." << std::endl;
             return std::nullopt;
         }
-        readFromPath(randomSizeT(leafStartIndex, nodes.size() - 1));
+        prevPath = randomSizeT(leafStartIndex, nodes.size() - 1);
+        readFromPath(prevPath);
         stash.push_back(Block(value, position, false));
         occupied++;
     }
@@ -146,7 +148,12 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
             break;
         }
     }
-    evict();
+    evict(prevPath);
+    size_t randomEvictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
+    while (randomEvictPathID == prevPath) {
+        randomEvictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
+    }
+    evict(randomEvictPathID);
     // size_t curLevel = treeLevel - 1;
     // size_t evictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
     // if (debugMode) {
@@ -216,22 +223,12 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
 }
 
 
-void Tree::evict() {
+void Tree::evict(size_t evictPathID) {
+    while (evictPathID > 0) {
+        emptyStashTo(evictPathID);
+        evictPathID = getParent(evictPathID);
+    }
     emptyStashTo(0);
-    if (treeLevel == 1) {
-        return;
-    }
-    std::deque<size_t> nextNodes = {1, 2};
-    size_t curLevel = 2;
-    while (curLevel < treeLevel) {
-        for (int i = 0; i < 2; i ++) {
-            size_t curNodeId = nextNodes.front();
-            nextNodes.pop_front();
-            emptyStashTo(curNodeId);
-            nextNodes.push_back(randomSizeT(2 * curNodeId, 2 * curNodeId + 1));
-        }
-        curLevel++;
-    }
 }
 
 void Tree::emptyStashTo(size_t nodeID) {

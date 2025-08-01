@@ -9,6 +9,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <chrono>
 
 
 //command format: [store|operate] <file_name> [-d]
@@ -51,12 +52,21 @@ int main() {
         }
 
         bool debugMode = false;
+        bool statsMode = false;
         auto debugIt = std::find(args.begin(), args.end(), "-d");
         if (debugIt != args.end()) {
             debugMode = true;
             args.erase(debugIt); 
         }
+        auto statsIt = std::find(args.begin(), args.end(), "-s");
+        if (statsIt != args.end()) {
+            statsMode = true;
+            args.erase(statsIt); 
+        }
 
+        if (args.empty()) {
+            continue;
+        }
 
         if (args[0] == "exit") {
             break;
@@ -86,16 +96,31 @@ int main() {
             }
             oramTrees = Forest(data.size(), bucketSize);
             size_t position = 0;
+
+            auto startTime = std::chrono::high_resolution_clock::now();
             for (const auto& entry : data) {
                 oramTrees.put(entry.first, entry.second);
                 position++;
                 std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
             }
+            auto endTime = std::chrono::high_resolution_clock::now();
+
             loaded = true;
             inputFile.close();
             std::cout<<args[1]<< " loaded successfully with " << data.size() << " entries." << std::endl;
             if (debugMode) {
                 std::cout<<oramTrees.toString() << std::endl;
+            }
+            if (statsMode) {
+                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+                size_t totalStashSize = 0;
+                for (const auto& tree : oramTrees.trees) {
+                    totalStashSize += tree.stash.size();
+                }
+                std::cout << "\n=== STATISTICS ===" << std::endl;
+                std::cout << "Total execution time: " << duration.count() << " ms" << std::endl;
+                std::cout << "Total stash size: " << totalStashSize << " blocks" << std::endl;
+                std::cout << "=================" << std::endl;
             }
         } else if (args[0] == "operate") {
             if (!loaded) {
@@ -114,6 +139,7 @@ int main() {
             }
             std::string line;
             int opCount = 0;
+            auto startTime = std::chrono::high_resolution_clock::now();
             while (std::getline(inputFile, line)) {
                 std::istringstream lineStream(line);
                 std::string operation;
@@ -149,10 +175,56 @@ int main() {
                     }
                 }
             }
+            auto endTime = std::chrono::high_resolution_clock::now();
             inputFile.close();
             std::cout << "Processed " << opCount << " operations from " << fileName << std::endl;
 
+            if (statsMode) {
+                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+                size_t totalStashSize = 0;
+                for (const auto& tree : oramTrees.trees) {
+                    totalStashSize += tree.stash.size();
+                }
+                std::cout << "\n=== STATISTICS ===" << std::endl;
+                std::cout << "Total execution time: " << duration.count() << " ms" << std::endl;
+                std::cout << "Total stash size: " << totalStashSize << " blocks" << std::endl;
+                std::cout << "Operations processed: " << opCount << std::endl;
+                std::cout << "Average time per operation: " << (opCount > 0 ? duration.count() / opCount : 0) << " ms" << std::endl;
+                std::cout << "=================" << std::endl;
+            }
 
+        } else if (args[0] == "get") {
+            // you should call the print posRange command before using get to avoid accessing out of range positions
+            if (args.size() < 2) {
+                std::cerr << "Usage: get <position>" << std::endl;
+                continue;
+            }
+            size_t position = std::stoul(args[1]);
+            if (position >= oramTrees.getPosRange()) {
+                std::cerr << "Position out of range: " << position << std::endl;
+                continue;
+            } else {
+                auto result = oramTrees.get(position, debugMode);
+                if (result.has_value()) {
+                    std::cout << "GET pos " << position << ": " << result.value() << std::endl;
+                } else {
+                    std::cout << "GET pos " << position << ": NOT FOUND" << std::endl;
+                }
+            }
+        } else if (args[0] == "put") { 
+            // you should call the print posRange command before using put to avoid accessing out of range positions
+            if (args.size() < 3) {
+                std::cerr << "Usage: put <position> <value>" << std::endl;
+                continue;
+            }
+            size_t position = std::stoul(args[1]);
+            if (position >= oramTrees.getPosRange()) {
+                std::cerr << "Position out of range: " << position << std::endl;
+                continue;
+            }
+            int value = std::stoi(args[2]);
+            oramTrees.put(position, value, debugMode);
+            std::cout << "PUT pos " << position << " val " << value << ": DONE" << std::endl;
         } else if (args[0] == "print") {
             if (args.size() < 2) {
                 std::cerr << "Usage: print <ITEMS>"<<std::endl;
@@ -164,6 +236,8 @@ int main() {
                 }
             } else if (args[1] == "sizes") {
                 std::cout << oramTrees.getSizes() << std::endl;
+            } else if (args[1] == "posRange" ){
+                std::cout<< "Position range 1-" <<oramTrees.getPosRange()  - 1<< std::endl;
             } else {
                 std::cerr << "Unknown print command: " << args[1] << std::endl;
             }

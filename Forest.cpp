@@ -1,6 +1,7 @@
 #include "Forest.h"
 
 Forest::Forest(size_t dataSize, size_t bucketSize) {
+    dataCount = dataSize;
     if ((dataSize + bucketSize - 1)/bucketSize > MAX_TREE_SIZE) {
         size_t treeCount = (dataSize + MAX_TREE_SIZE - 1) / MAX_TREE_SIZE;
         for (size_t i = 0; i < treeCount; ++i) {
@@ -54,4 +55,8 @@ std::string Forest::toString() const {
     }
 
     return result;
+}
+
+size_t Forest::getPosRange() const {
+    return dataCount;
 }
