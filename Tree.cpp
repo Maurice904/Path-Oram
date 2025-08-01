@@ -1,14 +1,14 @@
 #include "Tree.h"
 
-int randomInt(int min, int max) {
+size_t randomSizeT(size_t min, size_t max) {
     static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dis(min, max);
+    static std::mt19937_64 gen(rd());
+    std::uniform_int_distribution<size_t> dis(min, max);
     return dis(gen);
 }
 
 
-Block::Block() : value(randomInt(INT_MIN, INT_MAX)), originalPosition(randomInt(INT_MIN, INT_MAX)), isDummy(true) {}
+Block::Block() : value(randomSizeT(0, INT_MAX)), originalPosition(randomSizeT(0, INT_MAX)), isDummy(true) {}
 
 Block::Block(int value, size_t originalPosition, bool isDummy) 
     : value(value), originalPosition(originalPosition), isDummy(isDummy) {}
@@ -20,11 +20,11 @@ std::string Block::toString() const {
     return "[Pos:" + std::to_string(originalPosition) + ", Val:" + std::to_string(value) + "]";
 }
 
-Node::Node(size_t bucketSize) : buckets(bucketSize, Block(randomInt(INT_MIN, INT_MAX), randomInt(INT_MIN, INT_MAX), true)), occupied(0), size(bucketSize) {}
+Node::Node(size_t bucketSize) : buckets(bucketSize, Block(randomSizeT(0, INT_MAX), randomSizeT(0, INT_MAX), true)), occupied(0), size(bucketSize) {}
 
 void Node::clear() {
     for (auto& block : buckets) {
-        block = Block(randomInt(INT_MIN, INT_MAX),randomInt(INT_MIN, INT_MAX), true);
+        block = Block(randomSizeT(0, INT_MAX),randomSizeT(0, INT_MAX), true);
     }
     occupied = 0;
 }
@@ -125,12 +125,12 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
             std::cerr << "Tree is full, cannot write new data." << std::endl;
             return std::nullopt;
         }
-        readFromPath(randomInt(leafStartIndex, nodes.size() - 1));
+        readFromPath(randomSizeT(leafStartIndex, nodes.size() - 1));
         stash.push_back(Block(value, position, false));
         occupied++;
     }
 
-    size_t newPath = randomInt(leafStartIndex, nodes.size() - 1);
+    size_t newPath = randomSizeT(leafStartIndex, nodes.size() - 1);
     if (debugMode) {
         std::cout<<"newPath: "<< newPath << std::endl;
     }
@@ -148,7 +148,7 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     }
     evict();
     // size_t curLevel = treeLevel - 1;
-    // size_t evictPathID = randomInt(leafStartIndex, nodes.size() - 1);
+    // size_t evictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
     // if (debugMode) {
     //     std::cout<<"Evicting pathID: " << evictPathID << std::endl;
     // }
@@ -215,6 +215,7 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     }
 }
 
+
 void Tree::evict() {
     emptyStashTo(0);
     if (treeLevel == 1) {
@@ -227,7 +228,7 @@ void Tree::evict() {
             size_t curNodeId = nextNodes.front();
             nextNodes.pop_front();
             emptyStashTo(curNodeId);
-            nextNodes.push_back(randomInt(2 * curNodeId, 2 * curNodeId + 1));
+            nextNodes.push_back(randomSizeT(2 * curNodeId, 2 * curNodeId + 1));
         }
         curLevel++;
     }

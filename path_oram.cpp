@@ -12,6 +12,8 @@
 
 
 //command format: [store|operate] <file_name> [-d]
+//                 print [sizes|trees] [output_file]
+//                 exit
 //===============================
 // test files format:
 // store: <position> <value>

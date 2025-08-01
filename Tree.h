@@ -18,7 +18,7 @@ enum Operation {
     WRITE
 };
 
-int randomInt(int min, int max);
+size_t randomSizeT(size_t min, size_t max);
 
 struct Block {
     int value;
