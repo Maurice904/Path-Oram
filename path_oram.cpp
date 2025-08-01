@@ -51,12 +51,21 @@ int main() {
         }
 
         bool debugMode = false;
+        bool statsMode = false;
         auto debugIt = std::find(args.begin(), args.end(), "-d");
         if (debugIt != args.end()) {
             debugMode = true;
             args.erase(debugIt); 
         }
+        auto statsIt = std::find(args.begin(), args.end(), "-s");
+        if (statsIt != args.end()) {
+            statsMode = true;
+            args.erase(statsIt); 
+        }
 
+        if (args.empty()) {
+            continue;
+        }
 
         if (args[0] == "exit") {
             break;
@@ -86,16 +95,31 @@ int main() {
             }
             oramTrees = Forest(data.size(), bucketSize);
             size_t position = 0;
+            
+            auto startTime = std::chrono::high_resolution_clock::now();
             for (const auto& entry : data) {
                 oramTrees.put(entry.first, entry.second);
                 position++;
                 std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
             }
+            auto endTime = std::chrono::high_resolution_clock::now();
+            
             loaded = true;
             inputFile.close();
             std::cout<<args[1]<< " loaded successfully with " << data.size() << " entries." << std::endl;
             if (debugMode) {
                 std::cout<<oramTrees.toString() << std::endl;
+            }
+            if (statsMode) {
+                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+                size_t totalStashSize = 0;
+                for (const auto& tree : oramTrees.trees) {
+                    totalStashSize += tree.stash.size();
+                }
+                std::cout << "\n=== STATISTICS ===" << std::endl;
+                std::cout << "Total execution time: " << duration.count() << " ms" << std::endl;
+                std::cout << "Total stash size: " << totalStashSize << " blocks" << std::endl;
+                std::cout << "=================" << std::endl;
             }
         } else if (args[0] == "operate") {
             if (!loaded) {
@@ -114,6 +138,7 @@ int main() {
             }
             std::string line;
             int opCount = 0;
+            auto startTime = std::chrono::high_resolution_clock::now();
             while (std::getline(inputFile, line)) {
                 std::istringstream lineStream(line);
                 std::string operation;
@@ -149,9 +174,23 @@ int main() {
                     }
                 }
             }
+            auto endTime = std::chrono::high_resolution_clock::now();
             inputFile.close();
             std::cout << "Processed " << opCount << " operations from " << fileName << std::endl;
 
+            if (statsMode) {
+                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+                size_t totalStashSize = 0;
+                for (const auto& tree : oramTrees.trees) {
+                    totalStashSize += tree.stash.size();
+                }
+                std::cout << "\n=== STATISTICS ===" << std::endl;
+                std::cout << "Total execution time: " << duration.count() << " ms" << std::endl;
+                std::cout << "Total stash size: " << totalStashSize << " blocks" << std::endl;
+                std::cout << "Operations processed: " << opCount << std::endl;
+                std::cout << "Average time per operation: " << (opCount > 0 ? duration.count() / opCount : 0) << " ms" << std::endl;
+                std::cout << "=================" << std::endl;
+            }
 
         } else if (args[0] == "print") {
             if (args.size() < 2) {
