@@ -146,7 +146,14 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
             break;
         }
     }
-    evict();
+    
+    size_t stashBeforeEvict = stash.size();
+    standardEvict();
+    size_t stashAfterEvict = stash.size();
+
+    if (debugMode) {
+        std::cout << "Evict: stash size " << stashBeforeEvict << " -> " << stashAfterEvict << std::endl;
+    }
     // size_t curLevel = treeLevel - 1;
     // size_t evictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
     // if (debugMode) {
@@ -217,36 +224,86 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
 
 
 void Tree::evict() {
-    emptyStashTo(0);
     if (treeLevel == 1) {
+        emptyStashTo(0);
         return;
     }
-    std::deque<size_t> nextNodes = {1, 2};
-    size_t curLevel = 2;
-    while (curLevel < treeLevel) {
-        for (int i = 0; i < 2; i ++) {
-            size_t curNodeId = nextNodes.front();
-            nextNodes.pop_front();
-            emptyStashTo(curNodeId);
-            nextNodes.push_back(randomSizeT(2 * curNodeId, 2 * curNodeId + 1));
+    
+    std::vector<size_t> nodesToProcess;
+    nodesToProcess.push_back(0);
+
+    for (size_t level = 0; level < treeLevel - 1; ++level) {
+        std::vector<size_t> nextLevelNodes;
+        
+        for (size_t nodeId : nodesToProcess) {
+            emptyStashTo(nodeId);
+            
+            size_t leftChild = 2 * nodeId + 1;
+            size_t rightChild = 2 * nodeId + 2;
+            
+            if (leftChild < nodes.size()) {
+                nextLevelNodes.push_back(leftChild);
+            }
+            if (rightChild < nodes.size()) {
+                nextLevelNodes.push_back(rightChild);
+            }
         }
-        curLevel++;
+        
+        nodesToProcess = nextLevelNodes;
+    }
+    
+    for (size_t nodeId : nodesToProcess) {
+        emptyStashTo(nodeId);
     }
 }
 
 void Tree::emptyStashTo(size_t nodeID) {
-    size_t stashSize = stash.size();
-    for (size_t i = 0; i < stashSize; i ++) {
-        if (nodes[nodeID].occupied == nodes[nodeID].size) {
-            break;
-        }
+    if (stash.empty() || nodes[nodeID].occupied >= nodes[nodeID].size) {
+        return;
+    }
+    std::deque<Block> remainingBlocks;
+    size_t placedCount = 0;
+    
+    while (!stash.empty()) {
         Block curBlock = std::move(stash.front());
         stash.pop_front();
-        if (isSamePath(nodeID, positionMap[curBlock.originalPosition])) {
+        
+        if (nodes[nodeID].occupied < nodes[nodeID].size && 
+            isSamePath(nodeID, positionMap[curBlock.originalPosition])) {
             nodes[nodeID].put(curBlock);
+            placedCount++;
         } else {
-            stash.push_back(std::move(curBlock));
+            remainingBlocks.push_back(std::move(curBlock));
         }
+    }
+    stash = std::move(remainingBlocks);
+}
+
+void Tree::standardEvict() {
+    if (treeLevel == 1) {
+        emptyStashTo(0);
+        return;
+    }
+    std::vector<size_t> currentLevel = {0};
+    
+    for (size_t level = 0; level < treeLevel; ++level) {
+        std::vector<size_t> nextLevel;
+        
+        for (size_t nodeId : currentLevel) {
+            emptyStashTo(nodeId);
+            
+            size_t leftChild = 2 * nodeId + 1;
+            size_t rightChild = 2 * nodeId + 2;
+            
+            if (leftChild < nodes.size()) {
+                nextLevel.push_back(leftChild);
+            }
+            if (rightChild < nodes.size()) {
+                nextLevel.push_back(rightChild);
+            }
+        }
+        
+        currentLevel = nextLevel;
     }
 }
 
@@ -271,4 +328,8 @@ std::string Tree::toString() const {
     }
 
     return result;
+}
+
+size_t Tree::getStashSize() const {
+    return stash.size();
 }
