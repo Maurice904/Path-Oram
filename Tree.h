@@ -60,6 +60,8 @@ public:
     std::string toString() const;
     void evict();
     void emptyStashTo(size_t nodeID);
+    void standardEvict();
+    size_t getStashSize() const;
 };
 
 #endif // TREE_H
