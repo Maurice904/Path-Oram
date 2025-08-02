@@ -211,6 +211,7 @@ int main() {
                     std::cout << "GET pos " << position << ": NOT FOUND" << std::endl;
                 }
             }
+            std::cout<<"==========================="<<std::endl;
         } else if (args[0] == "put") { 
             // you should call the print posRange command before using put to avoid accessing out of range positions
             if (args.size() < 3) {
@@ -225,6 +226,7 @@ int main() {
             int value = std::stoi(args[2]);
             oramTrees.put(position, value, debugMode);
             std::cout << "PUT pos " << position << " val " << value << ": DONE" << std::endl;
+            std::cout<<"==========================="<<std::endl;
         } else if (args[0] == "print") {
             if (args.size() < 2) {
                 std::cerr << "Usage: print <ITEMS>"<<std::endl;

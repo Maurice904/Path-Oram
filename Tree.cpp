@@ -75,6 +75,7 @@ Tree::Tree(size_t dataSize, size_t bucketSize, std::optional<int> preDesignedCap
         capacity = size * bucketSize;
     }
     leafStartIndex = size/2;
+    mid = leafStartIndex + (size - leafStartIndex) / 2;
 }
 
 size_t Tree::getParent(size_t children) {
@@ -84,11 +85,17 @@ size_t Tree::getParent(size_t children) {
     return (children - 1) / 2;
 }
 
-void Tree::readFromPath(size_t pathID) {
+void Tree::readFromPath(size_t pathID, bool debugMode) {
     size_t curNode = pathID;
     while (curNode > 0) {
+        if (debugMode) {
+            std::cout << "Reading from pathID: " << curNode << std::endl;
+        }
         for (auto& block: nodes[curNode].buckets) {
             if (!block.isDummy) {
+                if (debugMode) {
+                    std::cout<< "Stash block: " << block.toString() << std::endl;
+                }
                 stash.push_back(std::move(block));
             }
         }
@@ -97,15 +104,21 @@ void Tree::readFromPath(size_t pathID) {
     }
     for (auto& block: nodes[0].buckets) {
         if (!block.isDummy) {
+            if (debugMode) {
+                std::cout<< "Stash block: " << block.toString() << std::endl;
+            }
             stash.push_back(std::move(block));
         }
     }
     nodes[0].clear();
+    if (debugMode) {
+        std::cout<<"==========================="<<std::endl;
+    }
 }
 
 bool Tree::isSamePath(size_t curNode, size_t leafNode) {
     while (leafNode > curNode) {
-        leafNode >>= 1;
+        leafNode = getParent(leafNode);
     }
     return leafNode == curNode;
 }
@@ -117,6 +130,9 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     size_t prevPath = leafStartIndex;
     if (positionMap.find(position) != positionMap.end()) {
         prevPath = positionMap[position];
+        if (debugMode) {
+            std::cout<<"position found in map, prevPath: " << prevPath << std::endl;
+        }
         readFromPath(prevPath);
     } else {
         if (op == Operation::READ) {
@@ -127,6 +143,9 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
             return std::nullopt;
         }
         prevPath = randomSizeT(leafStartIndex, nodes.size() - 1);
+        if (debugMode) {
+            std::cout<<"position not found in map, generating new path: "<< prevPath << std::endl;
+        }
         readFromPath(prevPath);
         stash.push_back(Block(value, position, false));
         occupied++;
@@ -138,22 +157,35 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     }
     positionMap[position] = newPath;
     int returnValue = 0;
+    bool found = false;
     for (auto& block : stash) {
         if (block.originalPosition == position) {
+            found = true;
+            if (debugMode) {
+                std::cout << "Found block in stash: " << block.toString() << std::endl;
+            }
             if (op == Operation::READ) {
                 returnValue = block.value;
             } else {
                 block.value = value;
+                if (debugMode) {
+                    std::cout << "Updating value from " << block.value << " to " << value << std::endl;
+                }
             }
             break;
         }
     }
-    evict(prevPath);
-    size_t randomEvictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
-    while (randomEvictPathID == prevPath) {
-        randomEvictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
+    if (!found) {
+        std::cerr << "Block with position " << position << " not found in stash." << std::endl;
+        return std::nullopt;
     }
-    evict(randomEvictPathID);
+    evict(prevPath, debugMode);
+    if (prevPath < mid) {
+        evict(randomSizeT(mid, nodes.size() - 1), debugMode);
+    } else {
+        evict(randomSizeT(leafStartIndex, mid - 1), debugMode);
+    }
+
     // size_t curLevel = treeLevel - 1;
     // size_t evictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
     // if (debugMode) {
@@ -223,15 +255,18 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
 }
 
 
-void Tree::evict(size_t evictPathID) {
+void Tree::evict(size_t evictPathID, bool debugMode) {
     while (evictPathID > 0) {
-        emptyStashTo(evictPathID);
+        emptyStashTo(evictPathID, debugMode);
         evictPathID = getParent(evictPathID);
     }
-    emptyStashTo(0);
+    emptyStashTo(0, debugMode);
+    if (debugMode) {
+        std::cout<<"==========================="<<std::endl;
+    }
 }
 
-void Tree::emptyStashTo(size_t nodeID) {
+void Tree::emptyStashTo(size_t nodeID, bool debugMode) {
     size_t stashSize = stash.size();
     for (size_t i = 0; i < stashSize; i ++) {
         if (nodes[nodeID].occupied == nodes[nodeID].size) {
@@ -240,6 +275,10 @@ void Tree::emptyStashTo(size_t nodeID) {
         Block curBlock = std::move(stash.front());
         stash.pop_front();
         if (isSamePath(nodeID, positionMap[curBlock.originalPosition])) {
+            if (debugMode) {
+                std::cout<<positionMap[curBlock.originalPosition]<<" is on the same path as nodeID: " << nodeID << std::endl;
+                std::cout<<"putting block: " << curBlock.toString() << " to node: " << nodeID << std::endl;
+            }
             nodes[nodeID].put(curBlock);
         } else {
             stash.push_back(std::move(curBlock));
