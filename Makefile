@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -g
 TARGET = path_oram
-SOURCES = Tree.cpp Forest.cpp path_oram.cpp
+SOURCES = Tree.cpp Forest.cpp path_oram.cpp rgen.cpp
 
 all: $(TARGET)
 

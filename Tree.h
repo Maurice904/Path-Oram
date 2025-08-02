@@ -1,6 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
 
+
 #include <vector>
 #include <string>
 #include <stdexcept>
@@ -18,7 +19,6 @@ enum Operation {
     WRITE
 };
 
-size_t randomSizeT(size_t min, size_t max);
 
 struct Block {
     int value;
@@ -37,6 +37,7 @@ public:
 
     Node(size_t bucketSize = 4);
     void clear();
+    void deFrag();
     void put(Block& block);
     void remove(size_t index);
     std::string toString() const;
@@ -52,13 +53,12 @@ public:
     size_t capacity;
     size_t occupied;
     size_t dataCount;
-    size_t mid;
     Tree(size_t nodeCount, size_t bucketSize = 4, std::optional<int> preDesignedCap = std::nullopt);
     size_t getRange() const;
     size_t getParent(size_t children);
-    void readFromPath(size_t pathID, bool debugMode = false);
+    void readFromPath(size_t pathID,size_t target,bool debugMode = false, std::optional<double> randomReadRatio = std::nullopt);
     bool isSamePath(size_t curNode, size_t leafNode);
-    std::optional<int> access(Operation op, size_t position, int value = 0, bool debugMode = false);
+    std::optional<int> access(Operation op, size_t position, int value = 0, bool debugMode = false, std::optional<double> randomReadRatio = std::nullopt);
     std::string toString() const;
     void evict(size_t evictPathID, bool debugMode = false);
     void emptyStashTo(size_t nodeID, bool debugMode = false);

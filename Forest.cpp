@@ -1,25 +1,25 @@
 #include "Forest.h"
 
-Forest::Forest(size_t dataSize, size_t bucketSize) {
+Forest::Forest(size_t dataSize, size_t bucketSize, size_t maxSize) {
     dataCount = dataSize;
-    if ((dataSize + bucketSize - 1)/bucketSize > MAX_TREE_SIZE) {
-        size_t treeCount = (dataSize + MAX_TREE_SIZE - 1) / MAX_TREE_SIZE;
+    if ((dataSize + bucketSize - 1)/bucketSize > maxSize) {
+        size_t treeCount = (dataSize + maxSize - 1) / maxSize;
         for (size_t i = 0; i < treeCount; ++i) {
-            trees.push_back(Tree(MAX_TREE_SIZE, bucketSize, (dataSize + treeCount - 1) / treeCount));
+            trees.push_back(Tree(maxSize, bucketSize, (dataSize + treeCount - 1) / treeCount));
         }
     } else {
         trees.push_back(Tree(dataSize, bucketSize));
     }
 }
 
-void Forest::put(size_t position, int val, bool debugMode) {
+void Forest::put(size_t position, int val, bool debugMode, std::optional<double> randomReadRatio) {
     if (positionMap.find(position) != positionMap.end()) {
         size_t treeIndex = positionMap[position];
-        trees[treeIndex].access(WRITE, position, val, debugMode);
+        trees[treeIndex].access(WRITE, position, val, debugMode, randomReadRatio);
     } else {
         for (size_t i = 0; i < trees.size(); i ++) {
             if (trees[i].occupied < trees[i].capacity) {
-                trees[i].access(WRITE, position, val, debugMode);
+                trees[i].access(WRITE, position, val, debugMode, randomReadRatio);
                 positionMap[position] = i;
                 return;
             }
@@ -28,10 +28,10 @@ void Forest::put(size_t position, int val, bool debugMode) {
     }
 }
 
-std::optional<int> Forest::get(size_t position, bool debugMode) {
+std::optional<int> Forest::get(size_t position, bool debugMode, std::optional<double> randomReadRatio) {
     if (positionMap.find(position) != positionMap.end()) {
         size_t treeIndex = positionMap[position];
-        return trees[treeIndex].access(READ, position, 0, debugMode);
+        return trees[treeIndex].access(READ, position, 0, debugMode, randomReadRatio);
     }
     return std::nullopt;
 }

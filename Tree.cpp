@@ -1,11 +1,5 @@
 #include "Tree.h"
-
-size_t randomSizeT(size_t min, size_t max) {
-    static std::random_device rd;
-    static std::mt19937_64 gen(rd());
-    std::uniform_int_distribution<size_t> dis(min, max);
-    return dis(gen);
-}
+#include "rgen.h"
 
 
 Block::Block() : value(randomSizeT(0, INT_MAX)), originalPosition(randomSizeT(0, INT_MAX)), isDummy(true) {}
@@ -29,6 +23,21 @@ void Node::clear() {
     occupied = 0;
 }
 
+
+void Node::deFrag() {
+    std::vector<Block> newBckets;
+    for (const auto& block : buckets) {
+        if (!block.isDummy) {
+            newBckets.push_back(block);
+        }
+    }
+    occupied = newBckets.size();
+    for (size_t i = occupied; i < size; i++) {
+        newBckets.push_back(Block(randomSizeT(0, INT_MAX), randomSizeT(0, INT_MAX), true));
+    }
+    buckets = std::move(newBckets);
+}
+
 void Node::put(Block& block) {
     if (occupied >= size) {
         throw std::runtime_error("buckets is full");
@@ -46,6 +55,8 @@ void Node::remove(size_t index) {
         throw std::out_of_range("Invalid index");
     }
 }
+
+
 
 std::string Node::toString() const {
     std::string result = "Node(occupied:" + std::to_string(occupied) + "/" + std::to_string(size) + ") [";
@@ -75,7 +86,6 @@ Tree::Tree(size_t dataSize, size_t bucketSize, std::optional<int> preDesignedCap
         capacity = size * bucketSize;
     }
     leafStartIndex = size/2;
-    mid = leafStartIndex + (size - leafStartIndex) / 2;
 }
 
 size_t Tree::getParent(size_t children) {
@@ -85,7 +95,7 @@ size_t Tree::getParent(size_t children) {
     return (children - 1) / 2;
 }
 
-void Tree::readFromPath(size_t pathID, bool debugMode) {
+void Tree::readFromPath(size_t pathID, size_t target, bool debugMode, std::optional<double> randomReadRatio) {
     size_t curNode = pathID;
     while (curNode > 0) {
         if (debugMode) {
@@ -96,10 +106,31 @@ void Tree::readFromPath(size_t pathID, bool debugMode) {
                 if (debugMode) {
                     std::cout<< "Stash block: " << block.toString() << std::endl;
                 }
-                stash.push_back(std::move(block));
+                if (randomReadRatio.has_value()) {
+                    if (block.originalPosition != target) {
+                        double rDouble = randomDouble(0.0, 1.0);
+                        if (rDouble < randomReadRatio.value()) {
+                            stash.push_back(std::move(block));
+                            block = Block();
+                        } else {
+                            if (debugMode) {
+                                std::cout << "skipping instead"<< std::endl;
+                            }
+                        }
+                    } else {
+                        stash.push_back(std::move(block));
+                        block = Block();
+                    }
+                } else {
+                    stash.push_back(std::move(block));
+                }
             }
         }
-        nodes[curNode].clear();
+        if (!randomReadRatio.has_value()) {
+            nodes[curNode].clear();
+        } else {
+            nodes[curNode].deFrag();
+        }
         curNode = getParent(curNode);
     }
     for (auto& block: nodes[0].buckets) {
@@ -107,10 +138,31 @@ void Tree::readFromPath(size_t pathID, bool debugMode) {
             if (debugMode) {
                 std::cout<< "Stash block: " << block.toString() << std::endl;
             }
-            stash.push_back(std::move(block));
+            if (randomReadRatio.has_value()) {
+                if (block.originalPosition != target) {
+                    double rDouble = randomDouble(0.0, 1.0);
+                    if (rDouble < randomReadRatio.value()) {
+                        stash.push_back(std::move(block));
+                        block = Block();
+                    } else {
+                        if (debugMode) {
+                            std::cout << "skipping instead"<< std::endl;
+                        }
+                    }
+                } else {
+                    stash.push_back(std::move(block));
+                    block = Block();
+                }
+            } else {
+                stash.push_back(std::move(block));
+            }
         }
     }
-    nodes[0].clear();
+    if (!randomReadRatio.has_value()) {
+        nodes[0].clear();
+    } else {
+        nodes[0].deFrag();
+    }
     if (debugMode) {
         std::cout<<"==========================="<<std::endl;
     }
@@ -123,7 +175,7 @@ bool Tree::isSamePath(size_t curNode, size_t leafNode) {
     return leafNode == curNode;
 }
 
-std::optional<int> Tree::access(Operation op, size_t position, int value, bool debugMode) {
+std::optional<int> Tree::access(Operation op, size_t position, int value, bool debugMode, std::optional<double> randomReadRatio) {
     if (debugMode) {
         std::cout<<"occupied: " << occupied << ", capacity: " << capacity << std::endl;
     }
@@ -133,7 +185,7 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
         if (debugMode) {
             std::cout<<"position found in map, prevPath: " << prevPath << std::endl;
         }
-        readFromPath(prevPath);
+        readFromPath(prevPath,position,debugMode, randomReadRatio);
     } else {
         if (op == Operation::READ) {
             std::cerr << "Position not found in positionMap for READ operation." << std::endl;
@@ -146,7 +198,7 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
         if (debugMode) {
             std::cout<<"position not found in map, generating new path: "<< prevPath << std::endl;
         }
-        readFromPath(prevPath);
+        readFromPath(prevPath, position, debugMode, randomReadRatio);
         stash.push_back(Block(value, position, false));
         occupied++;
     }
@@ -180,72 +232,6 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
         return std::nullopt;
     }
     evict(prevPath, debugMode);
-    if (prevPath < mid) {
-        evict(randomSizeT(mid, nodes.size() - 1), debugMode);
-    } else {
-        evict(randomSizeT(leafStartIndex, mid - 1), debugMode);
-    }
-
-    // size_t curLevel = treeLevel - 1;
-    // size_t evictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
-    // if (debugMode) {
-    //     std::cout<<"Evicting pathID: " << evictPathID << std::endl;
-    // }
-    // while (evictPathID > 0) {
-    //     Node& curNode = nodes[evictPathID];
-    //     // propagate the block towards the leaf
-    //     if (debugMode) {
-    //         std::cout<<"curLevel:"<<curLevel<<std::endl;
-    //         std::cout<<"curNodeID: " << evictPathID << std::endl;
-    //     }
-    //     curLevel --;
-    //     size_t stashSize = stash.size();
-    //     for (size_t i = 0; i < stashSize; i++) {
-    //         if (curNode.occupied == curNode.size) {
-    //             if (debugMode) {
-    //                 std::cout << "cur node is full, cannot place more blocks." << std::endl;
-    //             }
-    //             break;
-    //         }
-    //         Block stashBlock = std::move(stash.front());
-    //         stash.pop_front();
-    //         if (isSamePath(evictPathID, positionMap[stashBlock.originalPosition])) {
-    //             if (debugMode) {
-    //                 std::cout << "Evict block from stash to curNode[" << evictPathID << "]"<< std::endl;
-    //             }
-    //             curNode.put(stashBlock);
-    //         } else {
-    //             if (debugMode) {
-    //                 std::cout << "Block[" << i << "] is not on the same path or is dummy data, skipping." << std::endl;
-    //             }
-    //             stash.push_back(std::move(stashBlock));
-    //         }
-    //     }
-    //     evictPathID = getParent(evictPathID);
-    // }
-    // size_t stashSize = stash.size();
-    // Node& curNode = nodes[evictPathID];
-    // for (size_t i = 0; i < stashSize; i++) {
-    //     if (curNode.occupied == curNode.size) {
-    //         if (debugMode) {
-    //             std::cout << "cur node is full, cannot place more blocks." << std::endl;
-    //         }
-    //         break;
-    //     }
-    //     Block stashBlock = std::move(stash.front());
-    //     stash.pop_front();
-    //     if (isSamePath(evictPathID, positionMap[stashBlock.originalPosition])) {
-    //         if (debugMode) {
-    //             std::cout << "Evict cur block"<<stashBlock.toString()<<" from stash to curNode[" << evictPathID << "]"<< std::endl;
-    //         }
-    //         curNode.put(stashBlock);
-    //     } else {
-    //         if (debugMode) {
-    //             std::cout << "Block[" << i << "] is not on the same path or is dummy data, skipping." << std::endl;
-    //         }
-    //         stash.push_back(std::move(stashBlock));
-    //     }
-    // }
 
     if (op == Operation::READ) {
         return returnValue;

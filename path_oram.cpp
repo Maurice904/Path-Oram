@@ -11,11 +11,21 @@
 #include <algorithm>
 #include <chrono>
 
-
-//command format: [store|operate] <file_name> [-d]
-//                 print [sizes|trees] [output_file]
-//                 exit
+// use -d to see debug information and use -s to see statistics related with run time and stash sizes
+//command format: store|operate <file_name> [--r <random read ratio>] [-d] [--max-size <max_tree_size>] ,
+//                 print sizes|trees [output_file] ,
+//                 get <position> [--r <random read ratio>] [-d] ,
+//                 put <position> <value> [--r <random read ratio>] [-d] ,
+//                 newTree <data_size> <bucket_size> <max_tree_size> [-d] ,
+//                 exit ,
 //===============================
+// we have implemented a random read algorithm which tries to reduce the stash size by not reading every block in the tree
+// if you want to use this feature, please provide a random read ratio between 0 and 1 when calling the get, put, store or operate commands
+// otherwise the feature is disabled by default.
+
+
+
+
 // test files format:
 // store: <position> <value>
 //===============================
@@ -32,6 +42,62 @@ void writeFileTo(const std::string& fileName, const std::string& content) {
     } else {
         std::cerr << "Error opening file: " << fileName << std::endl;
     }
+}
+
+size_t parseMaxTreeSize(std::vector<std::string>& args) {
+    auto it = std::find(args.begin(), args.end(), "--max-size");
+    if (it != args.end()) {
+        if (it + 1 != args.end()) {
+            try {
+                size_t maxSize = std::stoul(*(it + 1));
+                args.erase(it + 1);
+                args.erase(it);
+                return maxSize;
+            } catch (const std::exception& e) {
+                std::cerr << "Invalid max tree size format." << std::endl;
+                args.erase(it + 1);
+                args.erase(it);
+                return MAX_TREE_SIZE; 
+            }
+        } else {
+            std::cerr << "Missing value for --max-tree-size parameter." << std::endl;
+            args.erase(it);
+            return MAX_TREE_SIZE;
+        }
+    }
+    return MAX_TREE_SIZE;
+}
+
+
+std::optional<double> parseRandomReadRatio(std::vector<std::string>& args) {
+    auto it = std::find(args.begin(), args.end(), "--r");
+    if (it != args.end()) {
+        if (it + 1 != args.end()) {
+            try {
+                double ratio = std::stod(*(it + 1));
+                if (ratio >= 0 && ratio <= 1) {
+                    args.erase(it + 1);
+                    args.erase(it);
+                    return ratio;
+                } else {
+                    std::cerr << "Random read ratio must be between 0 and 1." << std::endl;
+                    args.erase(it + 1);
+                    args.erase(it);
+                    return std::nullopt;
+                }
+            } catch (const std::exception& e) {
+                std::cerr << "Invalid random read ratio format." << std::endl;
+                args.erase(it + 1);
+                args.erase(it);
+                return std::nullopt;
+            }
+        } else {
+            std::cerr << "Missing value for --r parameter." << std::endl;
+            args.erase(it);
+            return std::nullopt;
+        }
+    }
+    return std::nullopt;
 }
 
 int main() {
@@ -51,6 +117,8 @@ int main() {
             args.push_back(arg);
         }
 
+        std::optional<double> randomReadRatio = parseRandomReadRatio(args);
+        size_t maxTreeSize = parseMaxTreeSize(args);
         bool debugMode = false;
         bool statsMode = false;
         auto debugIt = std::find(args.begin(), args.end(), "-d");
@@ -70,6 +138,17 @@ int main() {
 
         if (args[0] == "exit") {
             break;
+        } else if (args[0] == "newTree") {
+            if (args.size() < 4) {
+                std::cerr << "Usage: newTree <data_size> <bucket_size> <max_tree_size>" << std::endl;
+                continue;
+            }
+            size_t dataSize = std::stoul(args[1]);
+            size_t bucketSize = std::stoul(args[2]);
+            size_t maxSize = std::stoul(args[3]);
+            oramTrees = Forest(dataSize, bucketSize, maxSize);
+            loaded = true;
+            std::cout<< "New forest created with " << oramTrees.trees.size() << " trees." << std::endl;
         } else if (args[0] == "store") {
             if (args.size() < 2) {
                 std::cerr << "Usage: store <file_name>" << std::endl;
@@ -94,12 +173,12 @@ int main() {
                     data.push_back({position, value});
                 }
             }
-            oramTrees = Forest(data.size(), bucketSize);
+            oramTrees = Forest(data.size(), bucketSize, maxTreeSize);
             size_t position = 0;
 
             auto startTime = std::chrono::high_resolution_clock::now();
             for (const auto& entry : data) {
-                oramTrees.put(entry.first, entry.second);
+                oramTrees.put(entry.first, entry.second, debugMode, randomReadRatio);
                 position++;
                 std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
             }
@@ -124,13 +203,14 @@ int main() {
             }
         } else if (args[0] == "operate") {
             if (!loaded) {
-                std::cerr << "No data loaded. Please use the 'store' command first." << std::endl;
+                std::cerr << "No data loaded. Please use the 'store' or 'newTree' command first." << std::endl;
                 continue;
             }
             if (args.size() < 2) {
                 std::cerr << "Usage: operate <file_name>" << std::endl;
                 continue;
             }
+
             std::string fileName = args[1];
             std::ifstream inputFile(fileName);
             if (!inputFile) {
@@ -147,7 +227,7 @@ int main() {
                     if (operation == "R") {
                         size_t position;
                         if (lineStream >> position) {
-                            auto result = oramTrees.get(position, debugMode);
+                            auto result = oramTrees.get(position, debugMode, randomReadRatio);
                             if (result.has_value()) {
                                 std::cout << "READ pos " << position << ": " << result.value() << std::endl;
                             } else {
@@ -161,7 +241,7 @@ int main() {
                         size_t position;
                         int value;
                         if (lineStream >> position >> value) {
-                            oramTrees.put(position, value, debugMode);
+                            oramTrees.put(position, value, debugMode, randomReadRatio);
                             std::cout << "WRITE pos " << position << " val " << value << ": DONE" << std::endl;
                             opCount++;
                         } else {
@@ -195,6 +275,10 @@ int main() {
 
         } else if (args[0] == "get") {
             // you should call the print posRange command before using get to avoid accessing out of range positions
+            if (!loaded) {
+                std::cerr << "No data loaded. Please use the 'store' or 'newTree' command first." << std::endl;
+                continue;
+            }
             if (args.size() < 2) {
                 std::cerr << "Usage: get <position>" << std::endl;
                 continue;
@@ -204,7 +288,7 @@ int main() {
                 std::cerr << "Position out of range: " << position << std::endl;
                 continue;
             } else {
-                auto result = oramTrees.get(position, debugMode);
+                auto result = oramTrees.get(position, debugMode, randomReadRatio);
                 if (result.has_value()) {
                     std::cout << "GET pos " << position << ": " << result.value() << std::endl;
                 } else {
@@ -214,6 +298,10 @@ int main() {
             std::cout<<"==========================="<<std::endl;
         } else if (args[0] == "put") { 
             // you should call the print posRange command before using put to avoid accessing out of range positions
+            if (!loaded) {
+                std::cerr << "No data loaded. Please use the 'store' or 'newTree' command first." << std::endl;
+                continue;
+            }
             if (args.size() < 3) {
                 std::cerr << "Usage: put <position> <value>" << std::endl;
                 continue;
@@ -224,7 +312,7 @@ int main() {
                 continue;
             }
             int value = std::stoi(args[2]);
-            oramTrees.put(position, value, debugMode);
+            oramTrees.put(position, value, debugMode, randomReadRatio);
             std::cout << "PUT pos " << position << " val " << value << ": DONE" << std::endl;
             std::cout<<"==========================="<<std::endl;
         } else if (args[0] == "print") {
