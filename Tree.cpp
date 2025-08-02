@@ -85,7 +85,10 @@ Tree::Tree(size_t dataSize, size_t bucketSize, std::optional<int> preDesignedCap
     } else {
         capacity = size * bucketSize;
     }
+    leafCount = size / 2 + 1;
+    ringPath = 0;
     leafStartIndex = size/2;
+    mid = leafCount/2 + leafStartIndex;
 }
 
 size_t Tree::getParent(size_t children) {
@@ -175,7 +178,7 @@ bool Tree::isSamePath(size_t curNode, size_t leafNode) {
     return leafNode == curNode;
 }
 
-std::optional<int> Tree::access(Operation op, size_t position, int value, bool debugMode, std::optional<double> randomReadRatio) {
+std::optional<int> Tree::access(Operation op, size_t position, int value, bool debugMode, std::optional<double> randomReadRatio, bool ringFlag) {
     if (debugMode) {
         std::cout<<"occupied: " << occupied << ", capacity: " << capacity << std::endl;
     }
@@ -231,7 +234,19 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
         std::cerr << "Block with position " << position << " not found in stash." << std::endl;
         return std::nullopt;
     }
+
+
     evict(prevPath, debugMode);
+    if (ringFlag) {
+        // ring oram original implementation: g = reverseBits(G), G <- G + 1
+        // evict(leafStartIndex + reverseBits(ringPath, treeLevel - 1), debugMode);
+        // ringPath = (ringPath + 1) & (leafCount - 1);
+        if (prevPath < mid) {
+            evict(randomSizeT(mid, nodes.size() - 1), debugMode);
+        } else {
+            evict(randomSizeT(leafStartIndex, mid - 1), debugMode);
+        }
+    }
 
     if (op == Operation::READ) {
         return returnValue;
@@ -276,7 +291,11 @@ void Tree::emptyStashTo(size_t nodeID, bool debugMode) {
 std::string Tree::toString() const {
     std::string result = "Tree(levels:" + std::to_string(treeLevel) + 
                         ", leafStart:" + std::to_string(leafStartIndex) + ")\n";
-
+    result += "stash size: " + std::to_string(stash.size()) + "\n";
+    result += "rp enabled info only:\n";
+    result += "next ring Path: " + std::to_string(reverseBits(ringPath, treeLevel - 1)) + "\n";
+    result += "next actual evict path: " + std::to_string(leafStartIndex + reverseBits(ringPath, treeLevel - 1)) + "\n";
+    result += "===========================\n";
     result += "Nodes:\n";
     for (size_t i = 0; i < nodes.size(); i++) {
         result += "  " + std::to_string(i) + ": " + nodes[i].toString() + "\n";

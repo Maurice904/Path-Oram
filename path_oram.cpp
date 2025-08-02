@@ -12,16 +12,22 @@
 #include <chrono>
 
 // use -d to see debug information and use -s to see statistics related with run time and stash sizes
-//command format: store|operate <file_name> [--r <random read ratio>] [-d] [--max-size <max_tree_size>] ,
+//command format:  store|operate <file_name> [--r <random read ratio>] [-d] [--max-size <max_tree_size>] [-rp] ,
 //                 print sizes|trees [output_file] ,
-//                 get <position> [--r <random read ratio>] [-d] ,
-//                 put <position> <value> [--r <random read ratio>] [-d] ,
+//                 get <position> [--r <random read ratio>] [-d] [-rp],
+//                 put <position> <value> [--r <random read ratio>] [-d] [-rp] ,
 //                 newTree <data_size> <bucket_size> <max_tree_size> [-d] ,
 //                 exit ,
-//===============================
-// we have implemented a random read algorithm which tries to reduce the stash size by not reading every block in the tree
-// if you want to use this feature, please provide a random read ratio between 0 and 1 when calling the get, put, store or operate commands
-// otherwise the feature is disabled by default.
+//==================================================================================
+// How to use different optimizations:
+//1. use --max-size to set the maximum size of each tree, default is 65535,
+// the data will be distributed across multiple trees if the data size exceeds the maximum size.
+// this optimization is used by default, so set a large number larger than the data you want to store to disable it.
+//==================================================================================
+//2. use -rp flag to enable ring oram features, default is false
+//==================================================================================
+//3. use --r <random read ratio> to enable random read algorithm, default is disabled,
+// the random read ratio should be between 0 and 1 and represent the probability a read block along the path is put into the stash
 
 
 
@@ -121,6 +127,7 @@ int main() {
         size_t maxTreeSize = parseMaxTreeSize(args);
         bool debugMode = false;
         bool statsMode = false;
+        bool ringFlag = false;
         auto debugIt = std::find(args.begin(), args.end(), "-d");
         if (debugIt != args.end()) {
             debugMode = true;
@@ -131,7 +138,11 @@ int main() {
             statsMode = true;
             args.erase(statsIt); 
         }
-
+        auto ringIt = std::find(args.begin(), args.end(), "-rp");
+        if (ringIt != args.end()) {
+            ringFlag = true;
+            args.erase(ringIt);
+        }
         if (args.empty()) {
             continue;
         }
@@ -143,9 +154,17 @@ int main() {
                 std::cerr << "Usage: newTree <data_size> <bucket_size> <max_tree_size>" << std::endl;
                 continue;
             }
-            size_t dataSize = std::stoul(args[1]);
-            size_t bucketSize = std::stoul(args[2]);
-            size_t maxSize = std::stoul(args[3]);
+            size_t dataSize;
+            size_t bucketSize;
+            size_t maxSize;
+            try {
+                dataSize = std::stoul(args[1]);
+                bucketSize = std::stoul(args[2]);
+                maxSize = std::stoul(args[3]);
+            } catch (const std::exception& e) {
+                std::cerr << "Invalid data size, bucket size or max tree size format." << std::endl;
+                continue;
+            }
             oramTrees = Forest(dataSize, bucketSize, maxSize);
             loaded = true;
             std::cout<< "New forest created with " << oramTrees.trees.size() << " trees." << std::endl;
@@ -157,7 +176,12 @@ int main() {
             std::string fileName = args[1];
             int bucketSize = 4;
             if (args.size() > 2) {
-                bucketSize = std::stoi(args[2]);
+                try {
+                    bucketSize = std::stoi(args[2]);
+                } catch (const std::exception& e) {
+                    std::cerr << "Invalid bucket size format: " << args[2] << std::endl;
+                    continue;
+                }
             }
             std::ifstream inputFile(fileName);
             if (!inputFile) {
@@ -178,7 +202,7 @@ int main() {
 
             auto startTime = std::chrono::high_resolution_clock::now();
             for (const auto& entry : data) {
-                oramTrees.put(entry.first, entry.second, debugMode, randomReadRatio);
+                oramTrees.put(entry.first, entry.second, debugMode, randomReadRatio, ringFlag);
                 position++;
                 std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
             }
@@ -227,7 +251,7 @@ int main() {
                     if (operation == "R") {
                         size_t position;
                         if (lineStream >> position) {
-                            auto result = oramTrees.get(position, debugMode, randomReadRatio);
+                            auto result = oramTrees.get(position, debugMode, randomReadRatio, ringFlag);
                             if (result.has_value()) {
                                 std::cout << "READ pos " << position << ": " << result.value() << std::endl;
                             } else {
@@ -283,12 +307,18 @@ int main() {
                 std::cerr << "Usage: get <position>" << std::endl;
                 continue;
             }
-            size_t position = std::stoul(args[1]);
+            size_t position;
+            try {
+                position = std::stoul(args[1]);
+            } catch (const std::exception& e) {
+                std::cerr << "Invalid position format: " << args[1] << std::endl;
+                continue;
+            }
             if (position >= oramTrees.getPosRange()) {
                 std::cerr << "Position out of range: " << position << std::endl;
                 continue;
             } else {
-                auto result = oramTrees.get(position, debugMode, randomReadRatio);
+                auto result = oramTrees.get(position, debugMode, randomReadRatio, ringFlag);
                 if (result.has_value()) {
                     std::cout << "GET pos " << position << ": " << result.value() << std::endl;
                 } else {
@@ -306,13 +336,25 @@ int main() {
                 std::cerr << "Usage: put <position> <value>" << std::endl;
                 continue;
             }
-            size_t position = std::stoul(args[1]);
+            size_t position;
+            try {
+                position = std::stoul(args[1]);
+            } catch (const std::exception& e) {
+                std::cerr << "Invalid position format: " << args[1] << std::endl;
+                continue;
+            }
             if (position >= oramTrees.getPosRange()) {
                 std::cerr << "Position out of range: " << position << std::endl;
                 continue;
             }
-            int value = std::stoi(args[2]);
-            oramTrees.put(position, value, debugMode, randomReadRatio);
+            int value;
+            try {
+                value = std::stoi(args[2]);
+            } catch (const std::exception& e) {
+                std::cerr << "Invalid value format: " << args[2] << std::endl;
+                continue;
+            }
+            oramTrees.put(position, value, debugMode, randomReadRatio, ringFlag);
             std::cout << "PUT pos " << position << " val " << value << ": DONE" << std::endl;
             std::cout<<"==========================="<<std::endl;
         } else if (args[0] == "print") {

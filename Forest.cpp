@@ -12,14 +12,14 @@ Forest::Forest(size_t dataSize, size_t bucketSize, size_t maxSize) {
     }
 }
 
-void Forest::put(size_t position, int val, bool debugMode, std::optional<double> randomReadRatio) {
+void Forest::put(size_t position, int val, bool debugMode, std::optional<double> randomReadRatio, bool ringFlag) {
     if (positionMap.find(position) != positionMap.end()) {
         size_t treeIndex = positionMap[position];
-        trees[treeIndex].access(WRITE, position, val, debugMode, randomReadRatio);
+        trees[treeIndex].access(WRITE, position, val, debugMode, randomReadRatio, ringFlag);
     } else {
         for (size_t i = 0; i < trees.size(); i ++) {
             if (trees[i].occupied < trees[i].capacity) {
-                trees[i].access(WRITE, position, val, debugMode, randomReadRatio);
+                trees[i].access(WRITE, position, val, debugMode, randomReadRatio, ringFlag);
                 positionMap[position] = i;
                 return;
             }
@@ -28,10 +28,10 @@ void Forest::put(size_t position, int val, bool debugMode, std::optional<double>
     }
 }
 
-std::optional<int> Forest::get(size_t position, bool debugMode, std::optional<double> randomReadRatio) {
+std::optional<int> Forest::get(size_t position, bool debugMode, std::optional<double> randomReadRatio, bool ringFlag) {
     if (positionMap.find(position) != positionMap.end()) {
         size_t treeIndex = positionMap[position];
-        return trees[treeIndex].access(READ, position, 0, debugMode, randomReadRatio);
+        return trees[treeIndex].access(READ, position, 0, debugMode, randomReadRatio, ringFlag);
     }
     return std::nullopt;
 }
