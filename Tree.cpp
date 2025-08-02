@@ -241,6 +241,8 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
         // ring oram original implementation: g = reverseBits(G), G <- G + 1
         // evict(leafStartIndex + reverseBits(ringPath, treeLevel - 1), debugMode);
         // ringPath = (ringPath + 1) & (leafCount - 1);
+
+        // our adaptation:
         if (prevPath < mid) {
             evict(randomSizeT(mid, nodes.size() - 1), debugMode);
         } else {

@@ -204,13 +204,17 @@ int main() {
             for (const auto& entry : data) {
                 oramTrees.put(entry.first, entry.second, debugMode, randomReadRatio, ringFlag);
                 position++;
-                std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
+                if (!statsMode) {
+                    std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl; 
+                }
             }
             auto endTime = std::chrono::high_resolution_clock::now();
 
             loaded = true;
             inputFile.close();
-            std::cout<<args[1]<< " loaded successfully with " << data.size() << " entries." << std::endl;
+            if (!statsMode) {
+                std::cout<<args[1]<< " loaded successfully with " << data.size() << " entries." << std::endl;
+            }
             if (debugMode) {
                 std::cout<<oramTrees.toString() << std::endl;
             }
@@ -252,10 +256,12 @@ int main() {
                         size_t position;
                         if (lineStream >> position) {
                             auto result = oramTrees.get(position, debugMode, randomReadRatio, ringFlag);
-                            if (result.has_value()) {
-                                std::cout << "READ pos " << position << ": " << result.value() << std::endl;
-                            } else {
-                                std::cout << "READ pos " << position << ": NOT FOUND" << std::endl;
+                            if (!statsMode) {
+                                if (result.has_value()) {
+                                    std::cout << "READ pos " << position << ": " << result.value() << std::endl;
+                                } else {
+                                    std::cout << "READ pos " << position << ": NOT FOUND" << std::endl;
+                                }
                             }
                             opCount++;
                         } else {
@@ -266,7 +272,9 @@ int main() {
                         int value;
                         if (lineStream >> position >> value) {
                             oramTrees.put(position, value, debugMode, randomReadRatio);
-                            std::cout << "WRITE pos " << position << " val " << value << ": DONE" << std::endl;
+                            if (!statsMode) {
+                                std::cout << "WRITE pos " << position << " val " << value << ": DONE" << std::endl;
+                            }
                             opCount++;
                         } else {
                             std::cerr << "Invalid write operation format: " << line << std::endl;
