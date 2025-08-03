@@ -51,17 +51,20 @@ public:
     size_t treeLevel;
     size_t capacity;
     size_t occupied;
-
+    size_t dataCount;
+    size_t mid;
+    size_t maxStashSize;
     Tree(size_t nodeCount, size_t bucketSize = 4, std::optional<int> preDesignedCap = std::nullopt);
+    size_t getRange() const;
     size_t getParent(size_t children);
-    void readFromPath(size_t pathID);
+    void readFromPath(size_t pathID, bool debugMode = false);
     bool isSamePath(size_t curNode, size_t leafNode);
     std::optional<int> access(Operation op, size_t position, int value = 0, bool debugMode = false);
     std::string toString() const;
-    void evict();
-    void emptyStashTo(size_t nodeID);
-    void standardEvict();
-    size_t getStashSize() const;
+    void evict(size_t evictPathID, bool debugMode = false);
+    void emptyStashTo(size_t nodeID, bool debugMode = false);
+    size_t getMaxStashSize() const;
+    void updateMaxStashSize();
 };
 
 #endif // TREE_H

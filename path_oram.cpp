@@ -1,4 +1,7 @@
 #include "Forest.h"
+#include "StandardPathORAM.h"
+#include "showInformation.h"
+#include "Plot.h"
 
 #include <fstream>
 #include <iostream>
@@ -9,17 +12,62 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <chrono>
+#include <memory>
+#include <iomanip>
 
 
-//command format: [store|operate] <file_name> [-d]
-//                 print [sizes|trees] [output_file]
-//                 exit
 //===============================
-// test files format:
-// store: <position> <value>
+// COMMAND REFERENCE & USAGE:
 //===============================
-// operate: R <position> , or W <position> <value>
-// where R is read operation and W is write operation
+// INITIALIZATION COMMANDS:
+//   store <file_name> [bucket_size] [-d] [-s] [-p]
+//     - Load data from file and initialize ORAM structure
+//     - bucket_size: optional bucket size (default: 4)
+//     - flags: -d (debug output), -s (performance statistics), -p (use StandardPathORAM)
+//
+//   operate <file_name> [-d] [-s]
+//     - Execute batch operations from file (requires prior 'store' command)
+//     - flags: -d (debug output), -s (performance statistics)
+//
+// INTERACTIVE COMMANDS:
+//   print <option> [output_file]
+//     - trees: display complete ORAM tree structure
+//     - sizes: show bucket and stash size information
+//     - posRange: display valid position range for operations
+//     - output_file: optional file to save output (only for trees)
+//
+//   exit
+//     - Terminate the program
+//
+//===============================
+// FILE FORMATS:
+//===============================
+// Store file format: <position> <value>
+// Example: 1 100
+//          2 200
+//
+// Operate file format: <operation> <position> [value]
+// R <position>        - Read operation
+// W <position> <value> - Write operation
+// Example: R 1
+//          W 2 150
+//
+//===============================
+// BENCHMARK COMMANDS:
+//===============================
+//   plot store [-p]
+//     - Generate performance benchmarks for store operations
+//     - Tests: 100kstore, 200kstore, 300kstore, 400kstore, 500kstore, 1mstore
+//     - Metrics: max stash size, execution time, memory usage
+//     - flags: -p (use StandardPathORAM implementation)
+//
+//   plot op [-p]
+//     - Generate performance benchmarks for operation files
+//     - Tests corresponding operation files for each store dataset
+//     - Metrics: operation throughput, stash behavior, timing analysis
+//     - flags: -p (use StandardPathORAM implementation)
+//===============================
 
 
 void writeFileTo(const std::string& fileName, const std::string& content) {
@@ -33,9 +81,16 @@ void writeFileTo(const std::string& fileName, const std::string& content) {
     }
 }
 
+
+
 int main() {
     Forest oramTrees(0);
     bool loaded = false;
+    
+    std::unique_ptr<std_poram::ServerStorage> storage;
+    std::unique_ptr<std_poram::StandardRandomGen> rng;
+    std::unique_ptr<std_poram::StandardPathORAM> standardOram;
+    bool useStandardOram = false;
     while (true) {
         std::string command;
         std::cout<< "Enter command: ";
@@ -50,19 +105,6 @@ int main() {
             args.push_back(arg);
         }
 
-        bool debugMode = false;
-        bool statsMode = false;
-        auto debugIt = std::find(args.begin(), args.end(), "-d");
-        if (debugIt != args.end()) {
-            debugMode = true;
-            args.erase(debugIt); 
-        }
-        auto statsIt = std::find(args.begin(), args.end(), "-s");
-        if (statsIt != args.end()) {
-            statsMode = true;
-            args.erase(statsIt); 
-        }
-
         if (args.empty()) {
             continue;
         }
@@ -71,12 +113,32 @@ int main() {
             break;
         } else if (args[0] == "store") {
             if (args.size() < 2) {
-                std::cerr << "Usage: store <file_name>" << std::endl;
+                std::cerr << "Usage: store <file_name> [bucket_size] [-d] [-s] [-p]" << std::endl;
                 continue;
             }
+            
+            bool debugMode = false;
+            bool statsMode = false;
+            bool useStandardFlag = false;
+            auto debugIt = std::find(args.begin(), args.end(), "-d");
+            if (debugIt != args.end()) {
+                debugMode = true;
+                args.erase(debugIt); 
+            }
+            auto statsIt = std::find(args.begin(), args.end(), "-s");
+            if (statsIt != args.end()) {
+                statsMode = true;
+                args.erase(statsIt); 
+            }
+            auto standardIt = std::find(args.begin(), args.end(), "-p");
+            if (standardIt != args.end()) {
+                useStandardFlag = true;
+                args.erase(standardIt); 
+            }
+            
             std::string fileName = args[1];
             int bucketSize = 4;
-            if (args.size() > 2) {
+            if (args.size() > 2 && args[2][0] != '-') {
                 bucketSize = std::stoi(args[2]);
             }
             std::ifstream inputFile(fileName);
@@ -93,33 +155,56 @@ int main() {
                     data.push_back({position, value});
                 }
             }
-            oramTrees = Forest(data.size(), bucketSize);
-            size_t position = 0;
-            
+
             auto startTime = std::chrono::high_resolution_clock::now();
-            for (const auto& entry : data) {
-                oramTrees.put(entry.first, entry.second);
-                position++;
-                std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
-            }
-            auto endTime = std::chrono::high_resolution_clock::now();
             
+            if (useStandardFlag) {
+                useStandardOram = true;
+                
+                standardOram.reset();
+                storage.reset();
+                rng.reset();
+                
+                std_poram::ServerStorage::resetState();
+                std_poram::Bucket::resetState();
+                
+                storage = std::make_unique<std_poram::ServerStorage>();
+                rng = std::make_unique<std_poram::StandardRandomGen>();
+                standardOram = std::make_unique<std_poram::StandardPathORAM>(storage.get(), rng.get(), bucketSize, data.size());
+                
+                for (const auto& entry : data) {
+                    int newData[std_poram::Block::BLOCK_SIZE] = { entry.second, 0 };
+                    int* result = standardOram->access(std_poram::StandardPathORAM::WRITE, entry.first - 1, newData);
+                    delete[] result;
+                    std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
+                }
+            } else {
+                useStandardOram = false;
+                oramTrees = Forest(data.size(), bucketSize);
+                
+                for (const auto& entry : data) {
+                    oramTrees.put(entry.first, entry.second);
+                    std::cout<<"position:"<<entry.first<<" stored completed"<<std::endl;
+                }
+            }
+            
+            auto endTime = std::chrono::high_resolution_clock::now();
+
             loaded = true;
             inputFile.close();
             std::cout<<args[1]<< " loaded successfully with " << data.size() << " entries." << std::endl;
+            
             if (debugMode) {
-                std::cout<<oramTrees.toString() << std::endl;
+                if (useStandardOram) {
+                    std::cout << "StandardPathORAM loaded - Stash size: " << standardOram->getStashSize() 
+                              << ", Levels: " << standardOram->getNumLevels() 
+                              << ", Leaves: " << standardOram->getNumLeaves() << std::endl;
+                } else {
+                    std::cout<<oramTrees.toString() << std::endl;
+                }
             }
             if (statsMode) {
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-                size_t totalStashSize = 0;
-                for (const auto& tree : oramTrees.trees) {
-                    totalStashSize += tree.stash.size();
-                }
-                std::cout << "\n=== STATISTICS ===" << std::endl;
-                std::cout << "Total execution time: " << duration.count() << " ms" << std::endl;
-                std::cout << "Total stash size: " << totalStashSize << " blocks" << std::endl;
-                std::cout << "=================" << std::endl;
+                ShowInformation::showStatistics(useStandardOram, standardOram, oramTrees, startTime, endTime, data.size());
             }
         } else if (args[0] == "operate") {
             if (!loaded) {
@@ -127,9 +212,23 @@ int main() {
                 continue;
             }
             if (args.size() < 2) {
-                std::cerr << "Usage: operate <file_name>" << std::endl;
+                std::cerr << "Usage: operate <file_name> [-d] [-s]" << std::endl;
                 continue;
             }
+            
+            bool debugMode = false;
+            bool statsMode = false;
+            auto debugIt = std::find(args.begin(), args.end(), "-d");
+            if (debugIt != args.end()) {
+                debugMode = true;
+                args.erase(debugIt); 
+            }
+            auto statsIt = std::find(args.begin(), args.end(), "-s");
+            if (statsIt != args.end()) {
+                statsMode = true;
+                args.erase(statsIt); 
+            }
+            
             std::string fileName = args[1];
             std::ifstream inputFile(fileName);
             if (!inputFile) {
@@ -138,7 +237,9 @@ int main() {
             }
             std::string line;
             int opCount = 0;
+            std::vector<int*> readBuffers;
             auto startTime = std::chrono::high_resolution_clock::now();
+            
             while (std::getline(inputFile, line)) {
                 std::istringstream lineStream(line);
                 std::string operation;
@@ -146,11 +247,21 @@ int main() {
                     if (operation == "R") {
                         size_t position;
                         if (lineStream >> position) {
-                            auto result = oramTrees.get(position, debugMode);
-                            if (result.has_value()) {
-                                std::cout << "READ pos " << position << ": " << result.value() << std::endl;
+                            if (useStandardOram) {
+                                int* data = standardOram->access(std_poram::StandardPathORAM::READ, position - 1, nullptr);
+                                if (data) {
+                                    std::cout << "READ pos " << position << ": " << data[0] << std::endl;
+                                    readBuffers.push_back(data);
+                                } else {
+                                    std::cout << "READ pos " << position << ": NOT FOUND" << std::endl;
+                                }
                             } else {
-                                std::cout << "READ pos " << position << ": NOT FOUND" << std::endl;
+                                auto result = oramTrees.get(position, debugMode);
+                                if (result.has_value()) {
+                                    std::cout << "READ pos " << position << ": " << result.value() << std::endl;
+                                } else {
+                                    std::cout << "READ pos " << position << ": NOT FOUND" << std::endl;
+                                }
                             }
                             opCount++;
                         } else {
@@ -160,7 +271,13 @@ int main() {
                         size_t position;
                         int value;
                         if (lineStream >> position >> value) {
-                            oramTrees.put(position, value, debugMode);
+                            if (useStandardOram) {
+                                int newData[std_poram::Block::BLOCK_SIZE] = { value, 0 };
+                                int* result = standardOram->access(std_poram::StandardPathORAM::WRITE, position - 1, newData);
+                                delete[] result;
+                            } else {
+                                oramTrees.put(position, value, debugMode);
+                            }
                             std::cout << "WRITE pos " << position << " val " << value << ": DONE" << std::endl;
                             opCount++;
                         } else {
@@ -170,7 +287,11 @@ int main() {
                         std::cerr << "Unknown operation: " << operation << " in line: " << line << std::endl;
                     }
                     if (debugMode) {
-                        std::cout << oramTrees.toString() << std::endl;
+                        if (useStandardOram) {
+                            std::cout << "StandardPathORAM - Current stash size: " << standardOram->getStashSize() << std::endl;
+                        } else {
+                            std::cout << oramTrees.toString() << std::endl;
+                        }
                     }
                 }
             }
@@ -179,32 +300,121 @@ int main() {
             std::cout << "Processed " << opCount << " operations from " << fileName << std::endl;
 
             if (statsMode) {
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
-                size_t totalStashSize = 0;
-                for (const auto& tree : oramTrees.trees) {
-                    totalStashSize += tree.stash.size();
-                }
-                std::cout << "\n=== STATISTICS ===" << std::endl;
-                std::cout << "Total execution time: " << duration.count() << " ms" << std::endl;
-                std::cout << "Total stash size: " << totalStashSize << " blocks" << std::endl;
-                std::cout << "Operations processed: " << opCount << std::endl;
-                std::cout << "Average time per operation: " << (opCount > 0 ? duration.count() / opCount : 0) << " ms" << std::endl;
-                std::cout << "=================" << std::endl;
+                ShowInformation::showStatistics(useStandardOram, standardOram, oramTrees, startTime, endTime, oramTrees.dataCount, opCount);
+            }
+            
+            for (int* ptr : readBuffers) {
+                delete[] ptr;
             }
 
+        } else if (args[0] == "get") {
+            if (args.size() < 2) {
+                std::cerr << "Usage: get <position> [-d]" << std::endl;
+                continue;
+            }
+            
+            bool debugMode = false;
+            auto debugIt = std::find(args.begin(), args.end(), "-d");
+            if (debugIt != args.end()) {
+                debugMode = true;
+                args.erase(debugIt); 
+            }
+            
+            size_t position = std::stoul(args[1]);
+            
+            if (useStandardOram) {
+                int* data = standardOram->access(std_poram::StandardPathORAM::READ, position - 1, nullptr);
+                if (data) {
+                    std::cout << "GET pos " << position << ": " << data[0] << std::endl;
+                    delete[] data;
+                } else {
+                    std::cout << "GET pos " << position << ": NOT FOUND" << std::endl;
+                }
+            } else {
+                if (position >= oramTrees.getPosRange()) {
+                    std::cerr << "Position out of range: " << position << std::endl;
+                    continue;
+                } else {
+                    auto result = oramTrees.get(position, debugMode);
+                    if (result.has_value()) {
+                        std::cout << "GET pos " << position << ": " << result.value() << std::endl;
+                    } else {
+                        std::cout << "GET pos " << position << ": NOT FOUND" << std::endl;
+                    }
+                }
+            }
+            std::cout<<"==========================="<<std::endl;
+        } else if (args[0] == "put") { 
+            if (args.size() < 3) {
+                std::cerr << "Usage: put <position> <value> [-d]" << std::endl;
+                continue;
+            }
+            
+            bool debugMode = false;
+            auto debugIt = std::find(args.begin(), args.end(), "-d");
+            if (debugIt != args.end()) {
+                debugMode = true;
+                args.erase(debugIt); 
+            }
+            
+            size_t position = std::stoul(args[1]);
+            int value = std::stoi(args[2]);
+            
+            if (useStandardOram) {
+                int newData[std_poram::Block::BLOCK_SIZE] = { value, 0 };
+                int* result = standardOram->access(std_poram::StandardPathORAM::WRITE, position - 1, newData);
+                delete[] result;
+            } else {
+                if (position >= oramTrees.getPosRange()) {
+                    std::cerr << "Position out of range: " << position << std::endl;
+                    continue;
+                }
+                oramTrees.put(position, value, debugMode);
+            }
+            std::cout << "PUT pos " << position << " val " << value << ": DONE" << std::endl;
+            std::cout<<"==========================="<<std::endl;
         } else if (args[0] == "print") {
             if (args.size() < 2) {
                 std::cerr << "Usage: print <ITEMS>"<<std::endl;
             } else if (args[1] == "trees") {
+                std::string info = ShowInformation::getTreeInfo(useStandardOram, standardOram, oramTrees);
                 if (args.size() < 3) {
-                    std::cout<< oramTrees.toString() << std::endl;
+                    std::cout << info << std::endl;
                 } else {
-                    writeFileTo(args[2], oramTrees.toString());
+                    writeFileTo(args[2], info);
                 }
             } else if (args[1] == "sizes") {
-                std::cout << oramTrees.getSizes() << std::endl;
+                std::cout << ShowInformation::getSizeInfo(useStandardOram, standardOram, oramTrees) << std::endl;
+            } else if (args[1] == "posRange" ){
+                std::cout << ShowInformation::getPositionRangeInfo(useStandardOram, standardOram, oramTrees) << std::endl;
             } else {
                 std::cerr << "Unknown print command: " << args[1] << std::endl;
+            }
+
+        } else if (args[0] == "plot") {
+            if (args.size() < 2) {
+                std::cerr << "Usage: plot <store|op> [-p]" << std::endl;
+                continue;
+            }
+            
+            if (args[1] == "store") {
+                bool useStandardFlag = false;
+                auto standardIt = std::find(args.begin(), args.end(), "-p");
+                if (standardIt != args.end()) {
+                    useStandardFlag = true;
+                }
+                
+                PathORAMPlot::plotStoreBenchmark(useStandardFlag);
+            } else if (args[1] == "op") {
+                bool useStandardFlag = false;
+                auto standardIt = std::find(args.begin(), args.end(), "-p");
+                if (standardIt != args.end()) {
+                    useStandardFlag = true;
+                }
+                
+                PathORAMPlot::plotOpBenchmark(useStandardFlag);
+            } else {
+                std::cerr << "Unknown plot command: " << args[1] << ". Use 'store' or 'op'." << std::endl;
             }
 
         } else {

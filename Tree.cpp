@@ -62,6 +62,7 @@ Tree::Tree(size_t dataSize, size_t bucketSize, std::optional<int> preDesignedCap
     size_t nodeCount = (dataSize + bucketSize - 1) / bucketSize;
     treeLevel = 0;
     occupied = 0;
+    maxStashSize = 0;
     while (nodeCount > size) {
         size = (size << 1) | 1;
         treeLevel++;
@@ -75,6 +76,7 @@ Tree::Tree(size_t dataSize, size_t bucketSize, std::optional<int> preDesignedCap
         capacity = size * bucketSize;
     }
     leafStartIndex = size/2;
+    mid = leafStartIndex + (size - leafStartIndex) / 2;
 }
 
 size_t Tree::getParent(size_t children) {
@@ -84,11 +86,17 @@ size_t Tree::getParent(size_t children) {
     return (children - 1) / 2;
 }
 
-void Tree::readFromPath(size_t pathID) {
+void Tree::readFromPath(size_t pathID, bool debugMode) {
     size_t curNode = pathID;
     while (curNode > 0) {
+        if (debugMode) {
+            std::cout << "Reading from pathID: " << curNode << std::endl;
+        }
         for (auto& block: nodes[curNode].buckets) {
             if (!block.isDummy) {
+                if (debugMode) {
+                    std::cout<< "Stash block: " << block.toString() << std::endl;
+                }
                 stash.push_back(std::move(block));
             }
         }
@@ -97,15 +105,22 @@ void Tree::readFromPath(size_t pathID) {
     }
     for (auto& block: nodes[0].buckets) {
         if (!block.isDummy) {
+            if (debugMode) {
+                std::cout<< "Stash block: " << block.toString() << std::endl;
+            }
             stash.push_back(std::move(block));
         }
     }
     nodes[0].clear();
+    updateMaxStashSize();
+    if (debugMode) {
+        std::cout<<"==========================="<<std::endl;
+    }
 }
 
 bool Tree::isSamePath(size_t curNode, size_t leafNode) {
     while (leafNode > curNode) {
-        leafNode >>= 1;
+        leafNode = getParent(leafNode);
     }
     return leafNode == curNode;
 }
@@ -114,8 +129,12 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     if (debugMode) {
         std::cout<<"occupied: " << occupied << ", capacity: " << capacity << std::endl;
     }
+    size_t prevPath = leafStartIndex;
     if (positionMap.find(position) != positionMap.end()) {
-        size_t prevPath = positionMap[position];
+        prevPath = positionMap[position];
+        if (debugMode) {
+            std::cout<<"position found in map, prevPath: " << prevPath << std::endl;
+        }
         readFromPath(prevPath);
     } else {
         if (op == Operation::READ) {
@@ -125,8 +144,13 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
             std::cerr << "Tree is full, cannot write new data." << std::endl;
             return std::nullopt;
         }
-        readFromPath(randomSizeT(leafStartIndex, nodes.size() - 1));
+        prevPath = randomSizeT(leafStartIndex, nodes.size() - 1);
+        if (debugMode) {
+            std::cout<<"position not found in map, generating new path: "<< prevPath << std::endl;
+        }
+        readFromPath(prevPath);
         stash.push_back(Block(value, position, false));
+        updateMaxStashSize();
         occupied++;
     }
 
@@ -136,24 +160,35 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     }
     positionMap[position] = newPath;
     int returnValue = 0;
+    bool found = false;
     for (auto& block : stash) {
         if (block.originalPosition == position) {
+            found = true;
+            if (debugMode) {
+                std::cout << "Found block in stash: " << block.toString() << std::endl;
+            }
             if (op == Operation::READ) {
                 returnValue = block.value;
             } else {
                 block.value = value;
+                if (debugMode) {
+                    std::cout << "Updating value from " << block.value << " to " << value << std::endl;
+                }
             }
             break;
         }
     }
-    
-    size_t stashBeforeEvict = stash.size();
-    standardEvict();
-    size_t stashAfterEvict = stash.size();
-
-    if (debugMode) {
-        std::cout << "Evict: stash size " << stashBeforeEvict << " -> " << stashAfterEvict << std::endl;
+    if (!found) {
+        std::cerr << "Block with position " << position << " not found in stash." << std::endl;
+        return std::nullopt;
     }
+    evict(prevPath, debugMode);
+    if (prevPath < mid) {
+        evict(randomSizeT(mid, nodes.size() - 1), debugMode);
+    } else {
+        evict(randomSizeT(leafStartIndex, mid - 1), debugMode);
+    }
+
     // size_t curLevel = treeLevel - 1;
     // size_t evictPathID = randomSizeT(leafStartIndex, nodes.size() - 1);
     // if (debugMode) {
@@ -223,87 +258,34 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
 }
 
 
-void Tree::evict() {
-    if (treeLevel == 1) {
-        emptyStashTo(0);
-        return;
+void Tree::evict(size_t evictPathID, bool debugMode) {
+    while (evictPathID > 0) {
+        emptyStashTo(evictPathID, debugMode);
+        evictPathID = getParent(evictPathID);
     }
-    
-    std::vector<size_t> nodesToProcess;
-    nodesToProcess.push_back(0);
-
-    for (size_t level = 0; level < treeLevel - 1; ++level) {
-        std::vector<size_t> nextLevelNodes;
-        
-        for (size_t nodeId : nodesToProcess) {
-            emptyStashTo(nodeId);
-            
-            size_t leftChild = 2 * nodeId + 1;
-            size_t rightChild = 2 * nodeId + 2;
-            
-            if (leftChild < nodes.size()) {
-                nextLevelNodes.push_back(leftChild);
-            }
-            if (rightChild < nodes.size()) {
-                nextLevelNodes.push_back(rightChild);
-            }
-        }
-        
-        nodesToProcess = nextLevelNodes;
-    }
-    
-    for (size_t nodeId : nodesToProcess) {
-        emptyStashTo(nodeId);
+    emptyStashTo(0, debugMode);
+    if (debugMode) {
+        std::cout<<"==========================="<<std::endl;
     }
 }
 
-void Tree::emptyStashTo(size_t nodeID) {
-    if (stash.empty() || nodes[nodeID].occupied >= nodes[nodeID].size) {
-        return;
-    }
-    std::deque<Block> remainingBlocks;
-    size_t placedCount = 0;
-    
-    while (!stash.empty()) {
+void Tree::emptyStashTo(size_t nodeID, bool debugMode) {
+    size_t stashSize = stash.size();
+    for (size_t i = 0; i < stashSize; i ++) {
+        if (nodes[nodeID].occupied == nodes[nodeID].size) {
+            break;
+        }
         Block curBlock = std::move(stash.front());
         stash.pop_front();
-        
-        if (nodes[nodeID].occupied < nodes[nodeID].size && 
-            isSamePath(nodeID, positionMap[curBlock.originalPosition])) {
+        if (isSamePath(nodeID, positionMap[curBlock.originalPosition])) {
+            if (debugMode) {
+                std::cout<<positionMap[curBlock.originalPosition]<<" is on the same path as nodeID: " << nodeID << std::endl;
+                std::cout<<"putting block: " << curBlock.toString() << " to node: " << nodeID << std::endl;
+            }
             nodes[nodeID].put(curBlock);
-            placedCount++;
         } else {
-            remainingBlocks.push_back(std::move(curBlock));
+            stash.push_back(std::move(curBlock));
         }
-    }
-    stash = std::move(remainingBlocks);
-}
-
-void Tree::standardEvict() {
-    if (treeLevel == 1) {
-        emptyStashTo(0);
-        return;
-    }
-    std::vector<size_t> currentLevel = {0};
-    
-    for (size_t level = 0; level < treeLevel; ++level) {
-        std::vector<size_t> nextLevel;
-        
-        for (size_t nodeId : currentLevel) {
-            emptyStashTo(nodeId);
-            
-            size_t leftChild = 2 * nodeId + 1;
-            size_t rightChild = 2 * nodeId + 2;
-            
-            if (leftChild < nodes.size()) {
-                nextLevel.push_back(leftChild);
-            }
-            if (rightChild < nodes.size()) {
-                nextLevel.push_back(rightChild);
-            }
-        }
-        
-        currentLevel = nextLevel;
     }
 }
 
@@ -330,6 +312,12 @@ std::string Tree::toString() const {
     return result;
 }
 
-size_t Tree::getStashSize() const {
-    return stash.size();
+size_t Tree::getMaxStashSize() const {
+    return maxStashSize;
+}
+
+void Tree::updateMaxStashSize() {
+    if (stash.size() > maxStashSize) {
+        maxStashSize = stash.size();
+    }
 }

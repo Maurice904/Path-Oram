@@ -1,6 +1,7 @@
 #include "Forest.h"
 
 Forest::Forest(size_t dataSize, size_t bucketSize) {
+    dataCount = dataSize;
     if ((dataSize + bucketSize - 1)/bucketSize > MAX_TREE_SIZE) {
         size_t treeCount = (dataSize + MAX_TREE_SIZE - 1) / MAX_TREE_SIZE;
         for (size_t i = 0; i < treeCount; ++i) {
@@ -30,7 +31,7 @@ void Forest::put(size_t position, int val, bool debugMode) {
 std::optional<int> Forest::get(size_t position, bool debugMode) {
     if (positionMap.find(position) != positionMap.end()) {
         size_t treeIndex = positionMap[position];
-        return trees[treeIndex].access(READ, position, 0, debugMode);
+        return trees[treeIndex].access(Operation::READ, position, 0, debugMode);
     }
     return std::nullopt;
 }
@@ -54,4 +55,16 @@ std::string Forest::toString() const {
     }
 
     return result;
+}
+
+size_t Forest::getPosRange() const {
+    return dataCount;
+}
+
+size_t Forest::getMaxStashSize() const {
+    size_t totalMaxStashSize = 0;
+    for (const auto& tree : trees) {
+        totalMaxStashSize += tree.getMaxStashSize();
+    }
+    return totalMaxStashSize;
 }
