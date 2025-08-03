@@ -12,7 +12,7 @@
 #include <chrono>
 
 // use -d to see debug information and use -s to see statistics related with run time and stash sizes
-//command format:  store|operate <file_name> [--r <random read ratio>] [-d] [--max-size <max_tree_size>] [-rp] ,
+//command format:  store|operate <file_name> [-s] [--r <random read ratio>] [-d] [--max-size <max_tree_size>] [-rp] ,
 //                 print sizes|trees [output_file] ,
 //                 get <position> [--r <random read ratio>] [-d] [-rp],
 //                 put <position> <value> [--r <random read ratio>] [-d] [-rp] ,
@@ -28,8 +28,6 @@
 //==================================================================================
 //3. use --r <random read ratio> to enable random read algorithm, default is disabled,
 // the random read ratio should be between 0 and 1 and represent the probability a read block along the path is put into the stash
-
-
 
 
 // test files format:
