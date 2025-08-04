@@ -5,10 +5,10 @@ Write-Host "Building Path-ORAM Tests..." -ForegroundColor Cyan
 
 # Source files
 $sourceFiles = @(
-    "src/Tree.cpp",
-    "src/Forest.cpp", 
-    "src/rgen.cpp",
-    "test/test.cpp"
+    "../src/Tree.cpp",
+    "../src/Forest.cpp", 
+    "../src/rgen.cpp",
+    "test.cpp"
 )
 
 # Compiler flags
