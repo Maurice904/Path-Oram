@@ -4,7 +4,7 @@
 Write-Host "Building Path-ORAM..." -ForegroundColor Green
 
 # Compile the program
-g++ -std=c++17 -Wall -Wextra -g -o path_oram Tree.cpp Forest.cpp path_oram.cpp rgen.cpp
+g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rgen.cpp main/path_oram.cpp
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "Build successful!" -ForegroundColor Green

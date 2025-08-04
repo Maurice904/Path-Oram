@@ -1,7 +1,8 @@
 import random
 import sys
 import argparse
-#command format: python fileGen.py [storage|operation] <n> [--output <filename>] [--max-value <max_value>] [--max-position <max_position>] [--read-ratio <read_ratio>]
+#command format: python fileGen.py storage <data size> [--output <filename>] [--max-value <max_value>] 
+#                                  operate <instruction amount> [--output <filename>] [--max-value <max_value>]  [--max-position <max_position>] [--read-ratio <read_ratio>]
 def generate_storage_file(n, filename="storage.txt", max_value=100000):
     with open(filename, 'w') as f:
         for i in range(1, n + 1):
