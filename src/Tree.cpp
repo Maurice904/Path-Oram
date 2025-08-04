@@ -77,6 +77,13 @@ Tree::Tree(size_t dataSize, size_t bucketSize, std::optional<int> preDesignedCap
         size = (size << 1) | 1;
         treeLevel++;
     }
+
+    //ensure the tree size is at least 1.1 times the data size to aviod stash size being too large
+    //*according section 7.1 Stash Occupancy Distribution in the paper
+    if ((double)size < dataSize * 1.1) {
+        size = (size << 1) | 1;
+    }
+
     for (size_t i = 0; i < size; i ++) {
         nodes.emplace_back(Node(bucketSize));
     }
