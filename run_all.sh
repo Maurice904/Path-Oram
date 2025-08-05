@@ -10,6 +10,13 @@ echo "Generating storage file..."
 python3 scripts/fileGen.py storage 1000000 --output "$store_file_1mil"
 python3 scripts/fileGen.py storage 200000  --output "$store_file_200k"
 
+echo "Generating operation file..."   
+python3 scripts/fileGen.py operation 100000 --output "testFiles/operate_100000"
+python3 scripts/fileGen.py operation 200000 --output "testFiles/operate_200000"
+python3 scripts/fileGen.py operation 500000 --output "testFiles/operate_500000"
+python3 scripts/fileGen.py operation 700000 --output "testFiles/operate_700000"
+python3 scripts/fileGen.py operation 1000000 --output "testFiles/operate_1000000"
+
 chmod +x *.sh
 
 # echo "==== Running no_opt.sh ===="

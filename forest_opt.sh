@@ -20,9 +20,7 @@ store_file_200k="testFiles/store_200000"
 
 
 for operate_size in "${operate_sizes[@]}"; do
-    operate_file="testFiles/operate_temp"
-    echo "Generating operation file..."
-    python3 scripts/fileGen.py operation $operate_size --output "$operate_file"
+    operate_file="testFiles/operate_${operate_size}"
     for tree_size in "${tree_sizes[@]}"; do
         store_file="testFiles/store_${tree_size}"   
         echo "=== Testing Operation Size $operate_size and Data Size: $tree_size ==="
@@ -96,7 +94,7 @@ EOF
             done
             avg_time=$((sum_time / 10))
 
-            echo "    Time: ${elapsed_ms} ms | Stash Size: $stash_size"
+            echo "    Time: ${elapsed_ms} ms | Stash Size: $total_stash"
         done
 
         if (( unique_count == 1 )); then
