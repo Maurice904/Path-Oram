@@ -19,10 +19,6 @@ mkdir -p testFiles
 store_file_1mil="testFiles/store_1000000"
 store_file_200k="testFiles/store_200000"
 
-echo "Generating storage file..."   
-python3 scripts/fileGen.py storage 1000000 --output "$store_file_1mil"
-python3 scripts/fileGen.py storage 200000  --output "$store_file_200k"
-
 for operate_size in "${operate_sizes[@]}"; do
     operate_file="testFiles/operate_temp"
     echo "Generating operation file..."

@@ -3,6 +3,13 @@
 # $ chmod +x run_all.sh
 # $ ./run_all.sh
 
+store_file_1mil="testFiles/store_1000000"
+store_file_200k="testFiles/store_200000"
+
+echo "Generating storage file..."   
+python3 scripts/fileGen.py storage 1000000 --output "$store_file_1mil"
+python3 scripts/fileGen.py storage 200000  --output "$store_file_200k"
+
 chmod +x *.sh
 
 echo "==== Running no_opt.sh ===="
