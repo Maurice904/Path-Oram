@@ -70,9 +70,15 @@ EOF
             fi
 
 
-            stash_line=$(echo "$stash_output" | grep "Tree\[0\]")
-            stash_size=$(echo "$stash_line" | awk '{print $NF}')
-            stash_sizes+=($stash_size)
+            stash_lines=$(echo "$stash_output" | grep "Tree\[")
+
+            total_stash=0
+            for line in $stash_lines; do
+                stash=$(echo "$line" | awk '{print $NF}')
+                total_stash=$((total_stash + stash))
+            done
+
+            stash_sizes+=($total_stash)
 
 
             min_time=${time_arr[0]}
