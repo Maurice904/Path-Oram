@@ -72,12 +72,17 @@ EOF
             stash_lines=$(echo "$stash_output" | grep "Tree\[")
 
             total_stash=0
-            for line in $stash_lines; do
-                stash=$(echo "$line" | awk '{print $NF}')
-                total_stash=$((total_stash + stash))
-            done
+            while IFS= read -r line; do
+                stash=$(echo "$line" | awk '{print $NF}' | tr -d ':')
+                if [[ "$stash" =~ ^[0-9]+$ ]]; then
+                    total_stash=$((total_stash + stash))
+                else
+                    echo "Warning: Invalid stash value '$stash' in line: $line" >&2
+                fi
+            done <<< "$stash_lines"
 
             stash_sizes+=($total_stash)
+
 
 
             min_time=${time_arr[0]}

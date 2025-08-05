@@ -12,8 +12,8 @@ python3 scripts/fileGen.py storage 200000  --output "$store_file_200k"
 
 chmod +x *.sh
 
-echo "==== Running no_opt.sh ===="
-bash no_opt.sh > no_opt_result.txt
+# echo "==== Running no_opt.sh ===="
+# bash no_opt.sh > no_opt_result.txt
 
 echo "==== Running forest_opt.sh ===="
 bash forest_opt.sh > forest_opt_result.txt
