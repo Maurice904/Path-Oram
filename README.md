@@ -70,7 +70,7 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
   $ Enter command: store storage.txt -s -rp
   $ Enter command: operate operation.txt -s -rp
 ---
-## Test it by yourself!
+## ⏰ Test it by yourself!
 Simply run the follow command:
 ```bash
 chmod +x run_all.sh
