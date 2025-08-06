@@ -41,7 +41,19 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
   * ```bash
     python3 scripts/fileGen.py operate 1000000 --output "operation.txt"
 
-## 🔩 Command-Line Flags Explained
+
+## Main Commands
+| Command                                                       | Description                                                                                               |                                                                                                                        |
+| ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `store <file> [options]`                                      | Loads a data file into the ORAM.                                                                          |                                                                                                                        |
+| `operate <file> [options]`                                    | Runs read/write operations from a file.                                                                   |                                                                                                                        |
+| `get <position> [--r <random read ratio>] [-d] [-rp]`         | Reads the value at a specified position. Valid only if position is in range. <br> *Example:* `get 42 -rp` |                                                                                                                        |
+| `put <position> <value> [--r <random read ratio>] [-d] [-rp]` | Writes a value to a specified position in the ORAM. <br> *Example:* `put 42 123 -rp`                      |                                                                                                                        |
+| \`print sizes                                                 | trees \[output\_file]\`                                                                                   | Prints internal stats, tree structure, or position range. Can output to file. <br> *Example:* `print trees output.txt` |
+| `newTree <data_size> <bucket_size> <max_tree_size> [-d]`      | Manually creates a forest with custom size parameters. <br> *Example:* `newTree 1000 4 100000`            |                                                                                                                        |
+| `exit`                                                        | Terminates the program.                                                                                   |                                                                                                                        |
+
+## 🔩 Supported Flags
 Our path_oram interface accepts several command-line flags to customize execution behavior and enable optional optimizations:
 
 | Flag               | Description                                                                                             | Example                                            |
