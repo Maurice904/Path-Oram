@@ -5,7 +5,7 @@
 
 # $ chmod +x no_opt.sh
 # $ ./no_opt.sh > no_opt_result.txt
-csv_file="result_no_opt.csv"
+csv_file="csv/result_no_opt.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
@@ -44,9 +44,8 @@ EOF
             )
             end_time=$(date +%s%6N)
             elapsed_ns=$((end_time - start_time))
-            elapsed_ms=$((elapsed_ns / 1000000))
-            total_time=$((total_time + elapsed_ms))
-            time_arr+=($elapsed_ms)
+            total_time=$((total_time + elapsed_ns))
+            time_arr+=($elapsed_ns)
 
 
 
@@ -82,7 +81,7 @@ EOF
             done
             avg_time=$((sum_time / 10))
 
-            echo "    Time: ${elapsed_ms} μs | Stash Size: $stash_size"
+            echo "    Time: ${elapsed_ns} μs | Stash Size: $stash_size"
         done
 
         if (( unique_count == 1 )); then

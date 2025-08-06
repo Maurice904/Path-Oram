@@ -1,0 +1,63 @@
+=== Testing Operation Size 100000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 5748965 μs | Stash Size: 54
+  [Run 2]
+    Time: 5649964 μs | Stash Size: 58
+  [Run 3]
+    Time: 5589340 μs | Stash Size: 56
+  [Run 4]
+    Time: 5568404 μs | Stash Size: 58
+  [Run 5]
+    Time: 5546742 μs | Stash Size: 54
+  [Run 6]
+    Time: 5479505 μs | Stash Size: 54
+  [Run 7]
+    Time: 5471439 μs | Stash Size: 54
+  [Run 8]
+    Time: 5487517 μs | Stash Size: 53
+  [Run 9]
+    Time: 5490137 μs | Stash Size: 51
+  [Run 10]
+    Time: 5472192 μs | Stash Size: 53
+[print sizes] (There are 5 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 54
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 58
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 56
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 53
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 51
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 100000]:
+     Avg Time   : 5550420 μs
+     Stash Size : avg=54, min=51, max=58
+
+=== Testing Operation Size 100000 and Data Size: 1000000 ===
+  [Run 1]

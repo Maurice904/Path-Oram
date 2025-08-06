@@ -6,7 +6,7 @@
 
 # $ chmod +x ring_oram_forest.sh
 # $ ./ring_oram_forest.sh > ring_oram_forest_result.txt
-csv_file="result_ring_oram_forest.csv"
+csv_file="csv/result_ring_oram_forest.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
@@ -45,7 +45,6 @@ EOF
             )
             end_time=$(date +%s%6N)
             elapsed_ns=$((end_time - start_time))
-            elapsed_ms=$((elapsed_ns / 1000000))
             total_time=$((total_time + elapsed_ms))
             time_arr+=($elapsed_ms)
 
