@@ -40,3 +40,8 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
 * For operation named operation.txt file with 1000000 lines:
   * ```bash
     python3 scripts/fileGen.py operate 1000000 --output "operation"
+
+## 💡Run "Path-Oram" now!
+  1. No Optimization: ``` sdsa  ```
+     
+  3.  dsdas 
