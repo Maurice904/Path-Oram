@@ -41,6 +41,17 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
   * ```bash
     python3 scripts/fileGen.py operate 1000000 --output "operation.txt"
 
+## 🔩 Command-Line Flags Explained
+Our path_oram interface accepts several command-line flags to customize execution behavior and enable optional optimizations:
+
+| Flag               | Description                                                                                             | Example                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| `-s`               | **Silent mode**: Suppresses detailed logs and speeds up batch runs.                                     | `operate operation.txt -s`                         |
+| `-rp`              | **Ring ORAM mode**: Enables ring-based pathing and eviction logic.                                      | `store storage.txt -s -rp`                         |
+| `--r <float>`      | **Random hybrid mode**: Uses Ring ORAM with given probability; Path ORAM otherwise.                     | `--r 0.5` (50% Ring, 50% Path)                     |
+| `--max-size <int>` | **Max tree size**: Forces single or multiple trees. If dataset exceeds this value, Forest mode is used. | `--max-size 100001` (single tree if data ≤ 100000) |
+
+
 ## 💡Run "Path-Oram" now!
 * No Optimization - Original Path-Oram:
   ```bash
