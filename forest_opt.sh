@@ -94,7 +94,7 @@ EOF
             done
             avg_time=$((sum_time / 10))
 
-            echo "    Time: ${elapsed_ms} ms | Stash Size: $total_stash"
+            echo "    Time: ${elapsed_ms} μs | Stash Size: $total_stash"
         done
 
         if (( unique_count == 1 )); then
@@ -127,7 +127,7 @@ EOF
         avg_time=$((total_time / 10))
 
         echo "===> [Summary for size : $tree_size and operation size : $operate_size]:"
-        echo "     Avg Time   : $avg_time ms"
+        echo "     Avg Time   : $avg_time μs"
         echo "     Stash Size : avg=$avg_stash, min=$min_stash, max=$max_stash"
         echo
 
