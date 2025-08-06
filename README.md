@@ -45,8 +45,27 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
 * No Optimization - Original Path-Oram:
   ```bash
   $ ./path_oram
-  $ Enter command: store storage.txt -s ## -s： Run in silent mode. Suppresses detailed logs and command outputs during execution.
-  $ Enter command: store operation.txt -s ## -s： Run in silent mode. Suppresses detailed logs and command outputs during execution.
+  $ Enter command: store storage.txt --max-size 1000001 -s # the number should always be greater than the data size, so it is 1000000 + 1
+  $ Enter command: operate operation.txt -s # -s： Run in silent mode. Suppresses detailed logs and command outputs during execution.
   $ Enter command: print sizes
   $ Enter command: exit  ## exit the command
-* 
+* Forest optimization：
+  ```bash
+  $ ./path_oram
+  $ Enter command: store storage.txt -s
+  $ Enter command: operate operation.txt -s
+* Ring oram Optimization：
+  ```bash
+  $ ./path_oram
+  $ Enter command: store storage.txt -s -rp --max-size 1000001 
+  $ Enter command: operate operation.txt -s -rp 
+ * Random read ratio + Forest Optimization：
+   ```bash
+   $ ./path_oram
+   $ Enter command: store storage.txt -s --r 0.5 # r is used for the probability of using ring-oram
+   $ Enter command: operate operation.txt -s --r 0.5
+* Ring oram + Forest Optimization：
+  ```bash
+  $ ./path_oram
+  $ Enter command: store storage.txt -s -rp
+  $ Enter command: operate operation.txt -s -rp
