@@ -51,7 +51,7 @@ Our path_oram interface accepts several command-line flags to customize executio
 | `--r <float>`      | **Random hybrid mode**: Uses Ring ORAM with given probability; Path ORAM otherwise.                     | `--r 0.5` (50% Ring, 50% Path)                     |
 | `--max-size <int>` | **Max tree size**: Forces single or multiple trees. If dataset exceeds this value, Forest mode is used. | `--max-size 100001` (single tree if data ≤ 100000) |
 
-
+---
 ## 💡Run "Path-Oram" now!
 * No Optimization - Original Path-Oram:
   ```bash
