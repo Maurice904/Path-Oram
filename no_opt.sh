@@ -33,7 +33,7 @@ for operate_size in "${operate_sizes[@]}"; do
 
         for i in {1..10}; do
             echo "  [Run $i]"
-            start_time=$(date +%s%N)
+            start_time=$(date +%s%6N)
 
             stash_output=$(./path_oram <<EOF
 store $store_file --max-size $max_size -s
@@ -42,7 +42,7 @@ print sizes
 exit
 EOF
             )
-            end_time=$(date +%s%N)
+            end_time=$(date +%s%6N)
             elapsed_ns=$((end_time - start_time))
             elapsed_ms=$((elapsed_ns / 1000000))
             total_time=$((total_time + elapsed_ms))
