@@ -45,8 +45,8 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
 ## Main Commands
 | Command                                                       | Description                               |
 | ------------------------------------------------------------- | ----------------------------------------- |
-| `store <file> [options]`                                      | Loads a data file into the ORAM.          |
-| `operate <file> [options]`                                    | Runs read/write operations from a file.   |
+| `store <file\_name> [-s] [--r <random read ratio>] [-d] [--max-size <max\_tree\_size>] [-rp]`                                      | Loads a data file into the ORAM.          |
+| `operate <file\_name> [-s] [--r <random read ratio>] [-d] [--max-size <max\_tree\_size>] [-rp]`                                    | Runs read/write operations from a file.   |
 | `get <position> [--r <random read ratio>] [-d] [-rp]`         | Reads the value at a specified position. Valid only if position is in range. <br> *Example:* `get 42 -rp` |
 | `put <position> <value> [--r <random read ratio>] [-d] [-rp]` | Writes a value to a specified position in the ORAM. <br> *Example:* `put 42 123 -rp`                      |
 | `print sizes\| trees \[output\_file]\`                        | Prints internal stats, tree structure, or position range. Can output to file. <br> *Example:* `print trees output.txt` |
