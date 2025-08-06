@@ -1,4 +1,4 @@
-# 🧪 Project Title
+# 🕶 Project Title
 
 Path-Oram implemented in C++
 
@@ -31,12 +31,13 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
 
 ---
 
-## Generate operations and data files
+## 🖥 Generate operations and data files
 
 * For data file named storage.txt with 1000000 lines:
   * ```bash
     python3 scripts/fileGen.py storage 1000000 --output "storage.txt"
   ```
+  
 * For operation named operation.txt file with 1000000 lines:
   * ```bash
     python3 scripts/fileGen.py operate 1000000 --output "operation"
