@@ -6,7 +6,7 @@
 
 # $ chmod +x random_rr_forest.sh
 # $ ./random_rr_forest.sh > random_rr_forest_result.txt
-csv_file="result_random_rr_forest.csv"
+csv_file="csv/result_random_rr_forest.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
