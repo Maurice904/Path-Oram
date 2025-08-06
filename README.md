@@ -39,9 +39,14 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
   
 * For operation named operation.txt file with 1000000 lines:
   * ```bash
-    python3 scripts/fileGen.py operate 1000000 --output "operation"
+    python3 scripts/fileGen.py operate 1000000 --output "operation.txt"
 
 ## 💡Run "Path-Oram" now!
-  1. No Optimization: ``` sdsa  ```
-     
-  3.  dsdas 
+* No Optimization - Original Path-Oram:
+  ```bash
+  $ ./path_oram
+  $ Enter command: store storage.txt -s ## -s： Run in silent mode. Suppresses detailed logs and command outputs during execution.
+  $ Enter command: store operation.txt -s ## -s： Run in silent mode. Suppresses detailed logs and command outputs during execution.
+  $ Enter command: print sizes
+  $ Enter command: exit  ## exit the command
+* 
