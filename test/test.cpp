@@ -35,6 +35,9 @@ int main() {
     accessTest(200000, 4, MAX_TREE_SIZE, std::nullopt, false);
     std::cout << "Access test completed successfully." << std::endl;
 
+    std::cout << "Running access test with input size 200000, bucket size 4, max tree size 65535, random read ratio 0.5, and ring path flag set to false." << std::endl;
+    accessTest(200000, 4, MAX_TREE_SIZE, 0.5, false);
+    std::cout << "Access test completed successfully." << std::endl;
 
     std::cout<< "Running access test with input size 1000000, bucket size 4, max tree size 65535, no random read ratio, and ring path flag set to false." << std::endl;
     accessTest(1000000, 4, MAX_TREE_SIZE, std::nullopt, false);

@@ -5,7 +5,7 @@
 
 # $ chmod +x forest_opt.sh
 # $ ./forest_opt.sh > forest_opt_result.txt
-csv_file="csv/result_forest_opt.csv"
+csv_file="result_forest_opt.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
