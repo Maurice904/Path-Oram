@@ -69,3 +69,11 @@ g++ -std=c++17 -Wall -Wextra -g -o path_oram src/Tree.cpp src/Forest.cpp src/rge
   $ ./path_oram
   $ Enter command: store storage.txt -s -rp
   $ Enter command: operate operation.txt -s -rp
+---
+## Test it by yourself!
+Simply run the follow command:
+```bash
+chmod +x run_all.sh
+./run_all.sh
+```
+Then all the output result would be in files named ```no_opt_result.txt```, ```forest_opt_result.txt```, ```ring_oram_result.txt```, ```ring_oram_forest_result.txt```, ```random_rr_forest_result.txt```，and they also output csv files named  ```result_random_rr_forest.csv```, ```result_no_opt.csv```, ```result_forest_opt.csv```, ```result_ring_oram.csv```, ```result_ring_oram_forest.csv```
