@@ -1,0 +1,1682 @@
+=== Testing Operation Size 100000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 6776874 μs | Stash Size: 126
+  [Run 2]
+    Time: 6700533 μs | Stash Size: 127
+  [Run 3]
+    Time: 6958157 μs | Stash Size: 139
+  [Run 4]
+    Time: 6743375 μs | Stash Size: 136
+  [Run 5]
+    Time: 6743409 μs | Stash Size: 125
+  [Run 6]
+    Time: 6719925 μs | Stash Size: 113
+  [Run 7]
+    Time: 6843636 μs | Stash Size: 134
+  [Run 8]
+    Time: 6536954 μs | Stash Size: 137
+  [Run 9]
+    Time: 6615657 μs | Stash Size: 122
+  [Run 10]
+    Time: 6815974 μs | Stash Size: 140
+[print sizes] (There are 10 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 126
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 127
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 139
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 136
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 125
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 113
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 134
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 137
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 122
+
+Enter command: 
+
+[unique #10]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 140
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 100000]:
+     Avg Time   : 6745449 μs
+     Stash Size : avg=129, min=113, max=140
+
+=== Testing Operation Size 100000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 18634479 μs | Stash Size: 1130
+  [Run 2]
+    Time: 18692472 μs | Stash Size: 1150
+  [Run 3]
+    Time: 18625632 μs | Stash Size: 1126
+  [Run 4]
+    Time: 18722959 μs | Stash Size: 1213
+  [Run 5]
+    Time: 18930195 μs | Stash Size: 1166
+  [Run 6]
+    Time: 18737984 μs | Stash Size: 1207
+  [Run 7]
+    Time: 18701713 μs | Stash Size: 1154
+  [Run 8]
+    Time: 18695410 μs | Stash Size: 1152
+  [Run 9]
+    Time: 18774821 μs | Stash Size: 1176
+  [Run 10]
+    Time: 18590176 μs | Stash Size: 1139
+[print sizes] (There are 10 results: ):
+
+[unique #1]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 58
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 76
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 88
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 59
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 68
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 85
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 74
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 85
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 81
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 60
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 105
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 97
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 68
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 88
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 86
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 71
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 90
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 74
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 85
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 64
+
+Enter command: 
+
+[unique #10]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 57
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 74
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 100000]:
+     Avg Time   : 18710584 μs
+     Stash Size : avg=1161, min=1126, max=1213
+
+=== Testing Operation Size 200000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 8034615 μs | Stash Size: 119
+  [Run 2]
+    Time: 7905856 μs | Stash Size: 103
+  [Run 3]
+    Time: 8478211 μs | Stash Size: 117
+  [Run 4]
+    Time: 8217472 μs | Stash Size: 125
+  [Run 5]
+    Time: 7836250 μs | Stash Size: 101
+  [Run 6]
+    Time: 8392677 μs | Stash Size: 135
+  [Run 7]
+    Time: 8185236 μs | Stash Size: 117
+  [Run 8]
+    Time: 8305966 μs | Stash Size: 116
+  [Run 9]
+    Time: 8084369 μs | Stash Size: 127
+  [Run 10]
+    Time: 8071119 μs | Stash Size: 116
+[print sizes] (There are 8 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 119
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 103
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 117
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 125
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 101
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 135
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 116
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 127
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 200000]:
+     Avg Time   : 8151177 μs
+     Stash Size : avg=117, min=101, max=135
+
+=== Testing Operation Size 200000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 19825302 μs | Stash Size: 1124
+  [Run 2]
+    Time: 20212045 μs | Stash Size: 1202
+  [Run 3]
+    Time: 20119395 μs | Stash Size: 1126
+  [Run 4]
+    Time: 19977995 μs | Stash Size: 1140
+  [Run 5]
+    Time: 20003291 μs | Stash Size: 1120
+  [Run 6]
+    Time: 20058232 μs | Stash Size: 1126
+  [Run 7]
+    Time: 20195548 μs | Stash Size: 1160
+  [Run 8]
+    Time: 19942011 μs | Stash Size: 1158
+  [Run 9]
+    Time: 20163210 μs | Stash Size: 1165
+  [Run 10]
+    Time: 20126784 μs | Stash Size: 1164
+[print sizes] (There are 10 results: ):
+
+[unique #1]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 74
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 86
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 85
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 69
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 76
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 71
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 78
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 58
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 58
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 91
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 69
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 85
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 69
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 76
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 88
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 72
+
+Enter command: 
+
+[unique #10]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 94
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 66
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 200000]:
+     Avg Time   : 20062381 μs
+     Stash Size : avg=1148, min=1120, max=1202
+
+=== Testing Operation Size 500000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 13020200 μs | Stash Size: 126
+  [Run 2]
+    Time: 12791984 μs | Stash Size: 128
+  [Run 3]
+    Time: 13152218 μs | Stash Size: 124
+  [Run 4]
+    Time: 13314187 μs | Stash Size: 143
+  [Run 5]
+    Time: 12721852 μs | Stash Size: 125
+  [Run 6]
+    Time: 12973779 μs | Stash Size: 134
+  [Run 7]
+    Time: 13250581 μs | Stash Size: 140
+  [Run 8]
+    Time: 12972757 μs | Stash Size: 128
+  [Run 9]
+    Time: 12891094 μs | Stash Size: 111
+  [Run 10]
+    Time: 12817162 μs | Stash Size: 120
+[print sizes] (There are 9 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 126
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 128
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 124
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 143
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 125
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 134
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 140
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 111
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 120
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 500000]:
+     Avg Time   : 12990581 μs
+     Stash Size : avg=127, min=111, max=143
+
+=== Testing Operation Size 500000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 24198311 μs | Stash Size: 1099
+  [Run 2]
+    Time: 24087366 μs | Stash Size: 1125
+  [Run 3]
+    Time: 24320727 μs | Stash Size: 1149
+  [Run 4]
+    Time: 24277603 μs | Stash Size: 1185
+  [Run 5]
+    Time: 23994548 μs | Stash Size: 1162
+  [Run 6]
+    Time: 24266792 μs | Stash Size: 1139
+  [Run 7]
+    Time: 24202931 μs | Stash Size: 1128
+  [Run 8]
+    Time: 24104650 μs | Stash Size: 1128
+  [Run 9]
+    Time: 24372158 μs | Stash Size: 1167
+  [Run 10]
+    Time: 24110810 μs | Stash Size: 1136
+[print sizes] (There are 10 results: ):
+
+[unique #1]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 86
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 61
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 59
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 79
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 69
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 89
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 90
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 68
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 66
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 75
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 67
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 92
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 70
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 92
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 60
+
+Enter command: 
+
+[unique #10]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 69
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 500000]:
+     Avg Time   : 24193589 μs
+     Stash Size : avg=1141, min=1099, max=1185
+
+=== Testing Operation Size 700000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 15994612 μs | Stash Size: 120
+  [Run 2]
+    Time: 16023104 μs | Stash Size: 115
+  [Run 3]
+    Time: 16032912 μs | Stash Size: 112
+  [Run 4]
+    Time: 16218500 μs | Stash Size: 130
+  [Run 5]
+    Time: 16261629 μs | Stash Size: 119
+  [Run 6]
+    Time: 15756580 μs | Stash Size: 117
+  [Run 7]
+    Time: 16024963 μs | Stash Size: 129
+  [Run 8]
+    Time: 16061148 μs | Stash Size: 131
+  [Run 9]
+    Time: 15854686 μs | Stash Size: 108
+  [Run 10]
+    Time: 16108390 μs | Stash Size: 116
+[print sizes] (There are 10 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 120
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 115
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 112
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 130
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 119
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 117
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 129
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 131
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 108
+
+Enter command: 
+
+[unique #10]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 116
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 700000]:
+     Avg Time   : 16033652 μs
+     Stash Size : avg=119, min=108, max=131
+
+=== Testing Operation Size 700000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 26931297 μs | Stash Size: 1131
+  [Run 2]
+    Time: 26849411 μs | Stash Size: 1094
+  [Run 3]
+    Time: 26857334 μs | Stash Size: 1179
+  [Run 4]
+    Time: 26879244 μs | Stash Size: 1112
+  [Run 5]
+    Time: 26923055 μs | Stash Size: 1141
+  [Run 6]
+    Time: 26788892 μs | Stash Size: 1148
+  [Run 7]
+    Time: 26714995 μs | Stash Size: 1173
+  [Run 8]
+    Time: 27003733 μs | Stash Size: 1213
+  [Run 9]
+    Time: 26704917 μs | Stash Size: 1187
+  [Run 10]
+    Time: 26646358 μs | Stash Size: 1140
+[print sizes] (There are 10 results: ):
+
+[unique #1]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 59
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 57
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 75
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 87
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 59
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 77
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 95
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 69
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 77
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 69
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 88
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 71
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 97
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 60
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 121
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 73
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 91
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 84
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 97
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 67
+
+Enter command: 
+
+[unique #10]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 54
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 91
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 66
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 700000]:
+     Avg Time   : 26829923 μs
+     Stash Size : avg=1151, min=1094, max=1213
+
+=== Testing Operation Size 1000000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 20645548 μs | Stash Size: 129
+  [Run 2]
+    Time: 20847936 μs | Stash Size: 128
+  [Run 3]
+    Time: 20888818 μs | Stash Size: 126
+  [Run 4]
+    Time: 20568063 μs | Stash Size: 125
+  [Run 5]
+    Time: 20749768 μs | Stash Size: 135
+  [Run 6]
+    Time: 20436983 μs | Stash Size: 119
+  [Run 7]
+    Time: 20533112 μs | Stash Size: 148
+  [Run 8]
+    Time: 20492933 μs | Stash Size: 115
+  [Run 9]
+    Time: 20284504 μs | Stash Size: 115
+  [Run 10]
+    Time: 20724724 μs | Stash Size: 143
+[print sizes] (There are 9 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 129
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 128
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 126
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 125
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 135
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 119
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 148
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 115
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 143
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 1000000]:
+     Avg Time   : 20617238 μs
+     Stash Size : avg=128, min=115, max=148
+
+=== Testing Operation Size 1000000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 31059107 μs | Stash Size: 1177
+  [Run 2]
+    Time: 31097433 μs | Stash Size: 1141
+  [Run 3]
+    Time: 30797084 μs | Stash Size: 1131
+  [Run 4]
+    Time: 30857164 μs | Stash Size: 1132
+  [Run 5]
+    Time: 30912847 μs | Stash Size: 1160
+  [Run 6]
+    Time: 31378726 μs | Stash Size: 1190
+  [Run 7]
+    Time: 34401926 μs | Stash Size: 1163
+  [Run 8]
+    Time: 36532681 μs | Stash Size: 1152
+  [Run 9]
+    Time: 33502728 μs | Stash Size: 1161
+  [Run 10]
+    Time: 31748294 μs | Stash Size: 1188
+[print sizes] (There are 10 results: ):
+
+[unique #1]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 94
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 86
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 68
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 101
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 59
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 68
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 64
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 73
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 87
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 59
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 78
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 81
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 80
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 103
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 96
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 76
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 87
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 80
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 83
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 70
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 69
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 65
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 77
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 71
+
+Enter command: 
+
+[unique #9]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 63
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 88
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 68
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 82
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 58
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 79
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 84
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 83
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 72
+
+Enter command: 
+
+[unique #10]:
+Enter command: Forest has 16 trees.
+Each tree has 62500 capacity.
+Tree[0] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[1] have occupied: 62500, capacity: 62500 max stash size: 96
+Tree[2] have occupied: 62500, capacity: 62500 max stash size: 88
+Tree[3] have occupied: 62500, capacity: 62500 max stash size: 64
+Tree[4] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[5] have occupied: 62500, capacity: 62500 max stash size: 75
+Tree[6] have occupied: 62500, capacity: 62500 max stash size: 61
+Tree[7] have occupied: 62500, capacity: 62500 max stash size: 66
+Tree[8] have occupied: 62500, capacity: 62500 max stash size: 74
+Tree[9] have occupied: 62500, capacity: 62500 max stash size: 78
+Tree[10] have occupied: 62500, capacity: 62500 max stash size: 72
+Tree[11] have occupied: 62500, capacity: 62500 max stash size: 62
+Tree[12] have occupied: 62500, capacity: 62500 max stash size: 71
+Tree[13] have occupied: 62500, capacity: 62500 max stash size: 76
+Tree[14] have occupied: 62500, capacity: 62500 max stash size: 67
+Tree[15] have occupied: 62500, capacity: 62500 max stash size: 82
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 1000000]:
+     Avg Time   : 32228799 μs
+     Stash Size : avg=1159, min=1131, max=1190
+
