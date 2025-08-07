@@ -6,11 +6,8 @@
 
 # $ chmod +x ring_oram_forest.sh
 # $ ./ring_oram_forest.sh > ring_oram_forest_result.txt
-<<<<<<<< HEAD:shell/opposite_path_forest.sh
 csv_file="result_opposite_path_forest.csv"
-========
-csv_file="csv/result_ring_oram_forest.csv"
->>>>>>>> main:shell/ring_oram_forest.sh
+
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
