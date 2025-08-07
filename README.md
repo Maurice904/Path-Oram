@@ -40,7 +40,7 @@ make
 
 ---
 
-## � Generating Simulation Files
+## Generating Simulation Files
 
 We provide a script `fileGen.py` in the `scripts` folder to generate both storage files (containing original data) and operation files.
 
