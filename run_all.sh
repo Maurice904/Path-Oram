@@ -33,5 +33,6 @@ bash shell/opposite_path_forest.sh > results/opposite_path_forest_result.txt
 
 echo "==== Running random_rr_forest.sh ===="
 bash shell/random_rr_forest.sh > results/random_rr_forest_result.txt
+bash shell/random_rr_forest.sh > results/random_rr_forest_result.txt
 
 echo "==== All scripts finished! ===="

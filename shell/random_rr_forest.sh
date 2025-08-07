@@ -6,7 +6,7 @@
 
 # $ chmod +x random_rr_forest.sh
 # $ ./random_rr_forest.sh > random_rr_forest_result.txt
-csv_file="result_random_rr_forest.csv"
+csv_file="csv/result_random_rr_forest.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
@@ -34,7 +34,7 @@ for operate_size in "${operate_sizes[@]}"; do
 
         for i in {1..10}; do
             echo "  [Run $i]"
-            start_time=$(date +%s%N)
+            start_time=$(date +%s%6N)
 
             stash_output=$(./path_oram <<EOF
 store $store_file -s --r 0.5
@@ -43,11 +43,10 @@ print sizes
 exit
 EOF
             )
-            end_time=$(date +%s%N)
+            end_time=$(date +%s%6N)
             elapsed_ns=$((end_time - start_time))
-            elapsed_ms=$((elapsed_ns / 1000000))
-            total_time=$((total_time + elapsed_ms))
-            time_arr+=($elapsed_ms)
+            total_time=$((total_time + elapsed_ns))
+            time_arr+=($elapsed_ns)
 
 
 
@@ -93,7 +92,7 @@ EOF
             done
             avg_time=$((sum_time / 10))
 
-            echo "    Time: ${elapsed_ms} ms | Stash Size: $total_stash"
+            echo "    Time: ${elapsed_ns} μs | Stash Size: $total_stash"
         done
 
         if (( unique_count == 1 )); then
@@ -126,7 +125,7 @@ EOF
         avg_time=$((total_time / 10))
 
         echo "===> [Summary for size : $tree_size and operation size : $operate_size]:"
-        echo "     Avg Time   : $avg_time ms"
+        echo "     Avg Time   : $avg_time μs"
         echo "     Stash Size : avg=$avg_stash, min=$min_stash, max=$max_stash"
         echo
 
