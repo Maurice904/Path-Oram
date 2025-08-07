@@ -1,0 +1,687 @@
+=== Testing Operation Size 100000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 4553672 μs | Stash Size: 59
+  [Run 2]
+    Time: 4543066 μs | Stash Size: 54
+  [Run 3]
+    Time: 4539550 μs | Stash Size: 51
+  [Run 4]
+    Time: 6049331 μs | Stash Size: 56
+  [Run 5]
+    Time: 4706800 μs | Stash Size: 52
+  [Run 6]
+    Time: 4616835 μs | Stash Size: 51
+  [Run 7]
+    Time: 4486908 μs | Stash Size: 52
+  [Run 8]
+    Time: 4553184 μs | Stash Size: 58
+  [Run 9]
+    Time: 4487833 μs | Stash Size: 54
+  [Run 10]
+    Time: 4527052 μs | Stash Size: 54
+[print sizes] (There are 6 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 59
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 54
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 51
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 56
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 52
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 58
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 100000]:
+     Avg Time   : 4706423 μs
+     Stash Size : avg=54, min=51, max=59
+
+=== Testing Operation Size 100000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 22086640 μs | Stash Size: 63
+  [Run 2]
+    Time: 22670355 μs | Stash Size: 67
+  [Run 3]
+    Time: 20800574 μs | Stash Size: 61
+  [Run 4]
+    Time: 22293388 μs | Stash Size: 63
+  [Run 5]
+    Time: 22672221 μs | Stash Size: 61
+  [Run 6]
+    Time: 20798605 μs | Stash Size: 62
+  [Run 7]
+    Time: 23435813 μs | Stash Size: 63
+  [Run 8]
+    Time: 22864888 μs | Stash Size: 70
+  [Run 9]
+    Time: 20899046 μs | Stash Size: 62
+  [Run 10]
+    Time: 23241462 μs | Stash Size: 68
+[print sizes] (There are 6 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 63
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 67
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 61
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 62
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 70
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 68
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 100000]:
+     Avg Time   : 22176299 μs
+     Stash Size : avg=64, min=61, max=70
+
+=== Testing Operation Size 200000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 6091787 μs | Stash Size: 55
+  [Run 2]
+    Time: 6145587 μs | Stash Size: 55
+  [Run 3]
+    Time: 6248790 μs | Stash Size: 52
+  [Run 4]
+    Time: 7985006 μs | Stash Size: 51
+  [Run 5]
+    Time: 5989889 μs | Stash Size: 60
+  [Run 6]
+    Time: 6135448 μs | Stash Size: 54
+  [Run 7]
+    Time: 6255393 μs | Stash Size: 52
+  [Run 8]
+    Time: 6274708 μs | Stash Size: 58
+  [Run 9]
+    Time: 7986450 μs | Stash Size: 56
+  [Run 10]
+    Time: 6206115 μs | Stash Size: 53
+[print sizes] (There are 8 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 55
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 52
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 51
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 60
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 54
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 58
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 56
+
+Enter command: 
+
+[unique #8]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 53
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 200000]:
+     Avg Time   : 6531917 μs
+     Stash Size : avg=54, min=51, max=60
+
+=== Testing Operation Size 200000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 24886649 μs | Stash Size: 60
+  [Run 2]
+    Time: 22723960 μs | Stash Size: 64
+  [Run 3]
+    Time: 25209093 μs | Stash Size: 70
+  [Run 4]
+    Time: 24948005 μs | Stash Size: 61
+  [Run 5]
+    Time: 22057068 μs | Stash Size: 63
+  [Run 6]
+    Time: 25050091 μs | Stash Size: 63
+  [Run 7]
+    Time: 25085817 μs | Stash Size: 73
+  [Run 8]
+    Time: 24382967 μs | Stash Size: 61
+  [Run 9]
+    Time: 22528984 μs | Stash Size: 61
+  [Run 10]
+    Time: 23972867 μs | Stash Size: 66
+[print sizes] (There are 7 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 60
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 64
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 70
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 61
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 63
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 73
+
+Enter command: 
+
+[unique #7]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 66
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 200000]:
+     Avg Time   : 24084550 μs
+     Stash Size : avg=64, min=60, max=73
+
+=== Testing Operation Size 500000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 11225218 μs | Stash Size: 55
+  [Run 2]
+    Time: 12330150 μs | Stash Size: 53
+  [Run 3]
+    Time: 10510176 μs | Stash Size: 52
+  [Run 4]
+    Time: 10481522 μs | Stash Size: 52
+  [Run 5]
+    Time: 12507324 μs | Stash Size: 53
+  [Run 6]
+    Time: 10690237 μs | Stash Size: 51
+  [Run 7]
+    Time: 10403509 μs | Stash Size: 57
+  [Run 8]
+    Time: 12059977 μs | Stash Size: 54
+  [Run 9]
+    Time: 10650828 μs | Stash Size: 54
+  [Run 10]
+    Time: 10578180 μs | Stash Size: 53
+[print sizes] (There are 6 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 55
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 53
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 52
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 51
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 57
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 54
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 500000]:
+     Avg Time   : 11143712 μs
+     Stash Size : avg=53, min=51, max=57
+
+=== Testing Operation Size 500000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 29674667 μs | Stash Size: 63
+  [Run 2]
+    Time: 29664728 μs | Stash Size: 68
+  [Run 3]
+    Time: 30173080 μs | Stash Size: 65
+  [Run 4]
+    Time: 29600884 μs | Stash Size: 63
+  [Run 5]
+    Time: 29414609 μs | Stash Size: 64
+  [Run 6]
+    Time: 28452387 μs | Stash Size: 63
+  [Run 7]
+    Time: 30150138 μs | Stash Size: 63
+  [Run 8]
+    Time: 29940671 μs | Stash Size: 63
+  [Run 9]
+    Time: 30886239 μs | Stash Size: 60
+  [Run 10]
+    Time: 29244111 μs | Stash Size: 66
+[print sizes] (There are 6 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 63
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 68
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 65
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 64
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 60
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 66
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 500000]:
+     Avg Time   : 29720151 μs
+     Stash Size : avg=63, min=60, max=68
+
+=== Testing Operation Size 700000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 13340225 μs | Stash Size: 52
+  [Run 2]
+    Time: 14853782 μs | Stash Size: 53
+  [Run 3]
+    Time: 13073544 μs | Stash Size: 56
+  [Run 4]
+    Time: 14956904 μs | Stash Size: 57
+  [Run 5]
+    Time: 13282015 μs | Stash Size: 56
+  [Run 6]
+    Time: 13494741 μs | Stash Size: 58
+  [Run 7]
+    Time: 14987440 μs | Stash Size: 52
+  [Run 8]
+    Time: 13460821 μs | Stash Size: 54
+  [Run 9]
+    Time: 15048560 μs | Stash Size: 57
+  [Run 10]
+    Time: 13488583 μs | Stash Size: 56
+[print sizes] (There are 6 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 52
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 53
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 56
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 57
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 58
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 54
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 700000]:
+     Avg Time   : 13998661 μs
+     Stash Size : avg=55, min=52, max=58
+
+=== Testing Operation Size 700000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 32666336 μs | Stash Size: 60
+  [Run 2]
+    Time: 32673028 μs | Stash Size: 65
+  [Run 3]
+    Time: 32818455 μs | Stash Size: 60
+  [Run 4]
+    Time: 32573487 μs | Stash Size: 62
+  [Run 5]
+    Time: 33185364 μs | Stash Size: 61
+  [Run 6]
+    Time: 33237019 μs | Stash Size: 60
+  [Run 7]
+    Time: 33721599 μs | Stash Size: 64
+  [Run 8]
+    Time: 32876422 μs | Stash Size: 62
+  [Run 9]
+    Time: 32613980 μs | Stash Size: 72
+  [Run 10]
+    Time: 32557014 μs | Stash Size: 61
+[print sizes] (There are 6 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 60
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 65
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 62
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 61
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 64
+
+Enter command: 
+
+[unique #6]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 72
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 700000]:
+     Avg Time   : 32892270 μs
+     Stash Size : avg=62, min=60, max=72
+
+=== Testing Operation Size 1000000 and Data Size: 200000 ===
+  [Run 1]
+    Time: 17316724 μs | Stash Size: 54
+  [Run 2]
+    Time: 19527452 μs | Stash Size: 54
+  [Run 3]
+    Time: 17369896 μs | Stash Size: 56
+  [Run 4]
+    Time: 19448431 μs | Stash Size: 55
+  [Run 5]
+    Time: 17839333 μs | Stash Size: 52
+  [Run 6]
+    Time: 19856682 μs | Stash Size: 54
+  [Run 7]
+    Time: 20155693 μs | Stash Size: 62
+  [Run 8]
+    Time: 17172133 μs | Stash Size: 55
+  [Run 9]
+    Time: 19613373 μs | Stash Size: 54
+  [Run 10]
+    Time: 17090182 μs | Stash Size: 52
+[print sizes] (There are 5 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 54
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 56
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 55
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 52
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 524284 capacity.
+Tree[0] have occupied: 200000, capacity: 524284 max stash size: 62
+
+Enter command: 
+===> [Summary for size : 200000 and operation size : 1000000]:
+     Avg Time   : 18538989 μs
+     Stash Size : avg=54, min=52, max=62
+
+=== Testing Operation Size 1000000 and Data Size: 1000000 ===
+  [Run 1]
+    Time: 38073175 μs | Stash Size: 70
+  [Run 2]
+    Time: 38921742 μs | Stash Size: 64
+  [Run 3]
+    Time: 40095246 μs | Stash Size: 63
+  [Run 4]
+    Time: 37772242 μs | Stash Size: 64
+  [Run 5]
+    Time: 38095034 μs | Stash Size: 65
+  [Run 6]
+    Time: 38396225 μs | Stash Size: 62
+  [Run 7]
+    Time: 37891688 μs | Stash Size: 65
+  [Run 8]
+    Time: 39087622 μs | Stash Size: 62
+  [Run 9]
+    Time: 38606270 μs | Stash Size: 64
+  [Run 10]
+    Time: 41055827 μs | Stash Size: 63
+[print sizes] (There are 5 results: ):
+
+[unique #1]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 70
+
+Enter command: 
+
+[unique #2]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 64
+
+Enter command: 
+
+[unique #3]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 63
+
+Enter command: 
+
+[unique #4]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 65
+
+Enter command: 
+
+[unique #5]:
+Enter command: Forest has 1 trees.
+Each tree has 2097148 capacity.
+Tree[0] have occupied: 1000000, capacity: 2097148 max stash size: 62
+
+Enter command: 
+===> [Summary for size : 1000000 and operation size : 1000000]:
+     Avg Time   : 38799507 μs
+     Stash Size : avg=64, min=62, max=70
+

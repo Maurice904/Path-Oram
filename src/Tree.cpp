@@ -252,15 +252,15 @@ std::optional<int> Tree::access(Operation op, size_t position, int value, bool d
     evict(prevPath, debugMode);
     if (ringFlag) {
         // ring oram original implementation: g = reverseBits(G), G <- G + 1
-        // evict(leafStartIndex + reverseBits(ringPath, treeLevel - 1), debugMode);
-        // ringPath = (ringPath + 1) & (leafCount - 1);
+        evict(leafStartIndex + reverseBits(ringPath, treeLevel - 1), debugMode);
+        ringPath = (ringPath + 1) & (leafCount - 1);
 
         // our adaptation:
-        if (prevPath < mid) {
-            evict(randomSizeT(mid, nodes.size() - 1), debugMode);
-        } else {
-            evict(randomSizeT(leafStartIndex, mid - 1), debugMode);
-        }
+        // if (prevPath < mid) {
+        //     evict(randomSizeT(mid, nodes.size() - 1), debugMode);
+        // } else {
+        //     evict(randomSizeT(leafStartIndex, mid - 1), debugMode);
+        // }
     }
 
     if (op == Operation::READ) {

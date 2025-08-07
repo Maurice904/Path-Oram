@@ -6,6 +6,11 @@
 store_file_1mil="testFiles/store_1000000"
 store_file_200k="testFiles/store_200000"
 
+echo "Creating necessary directories..."
+mkdir -p plot/results
+mkdir -p plot/csv
+mkdir -p testFiles
+
 echo "Generating storage file..."   
 python3 scripts/fileGen.py storage 1000000 --output "$store_file_1mil"
 python3 scripts/fileGen.py storage 200000  --output "$store_file_200k"
@@ -18,20 +23,21 @@ python3 scripts/fileGen.py operation 700000 --output "testFiles/operate_700000"
 python3 scripts/fileGen.py operation 1000000 --output "testFiles/operate_1000000"
 
 chmod +x *.sh
+chmod +x shell/*.sh
 
-echo "==== Running no_opt.sh ===="
-bash shell/no_opt.sh > results/no_opt_result.txt
+echo "==== Running Standard_path_oram.sh ===="
+cd shell && bash Standard_path_oram.sh > ../plot/results/Standard_path_oram_result.txt && cd ..
 
-echo "==== Running forest_opt.sh ===="
-bash shell/forest_opt.sh > results/forest_opt_result.txt
+echo "==== Running forest_oram.sh ===="
+cd shell && bash forest_oram.sh > ../plot/results/forest_oram_result.txt && cd ..
 
-echo "==== Running ring_oram.sh ===="
-bash shell/ring_oram.sh > results/ring_oram_result.txt
+echo "==== Running opposite_path.sh ===="
+cd shell && bash opposite_path.sh > ../plot/results/opposite_path_result.txt && cd ..
 
-echo "==== Running ring_oram_forest.sh ===="
-bash shell/ring_oram_forest.sh > results/ring_oram_forest_result.txt
+echo "==== Running opposite_path_forest.sh ===="
+cd shell && bash opposite_path_forest.sh > ../plot/results/opposite_path_forest_result.txt && cd ..
 
 echo "==== Running random_rr_forest.sh ===="
-bash shell/random_rr_forest.sh > results/random_rr_forest_result.txt
+cd shell && bash random_rr_forest.sh > ../plot/results/random_rr_forest_result.txt && cd ..
 
 echo "==== All scripts finished! ===="

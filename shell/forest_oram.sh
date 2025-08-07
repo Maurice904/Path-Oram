@@ -1,28 +1,28 @@
 #!/bin/bash
-# 4. ring oram + forest: 2 + 3
-# store <testFiles> -s -rp
-# operate <testFiles> -s -rp 
+# 2. forest optimization : 1
+# store <testFiles> -s
 
 
-# $ chmod +x ring_oram_forest.sh
-# $ ./ring_oram_forest.sh > ring_oram_forest_result.txt
-csv_file="csv/result_ring_oram_forest.csv"
+# $ chmod +x forest_opt.sh
+# $ ./forest_opt.sh > forest_opt_result.txt
+csv_file="../plot/csv/result_forest_opt.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
 operate_sizes=(100000 200000 500000 700000 1000000)
 tree_sizes=(200000 1000000)
 
-mkdir -p testFiles
 
 
-store_file_1mil="testFiles/store_1000000"
-store_file_200k="testFiles/store_200000"
+
+store_file_1mil="../testFiles/store_1000000"
+store_file_200k="../testFiles/store_200000"
+
 
 for operate_size in "${operate_sizes[@]}"; do
-    operate_file="testFiles/operate_${operate_size}"
+    operate_file="../testFiles/operate_${operate_size}"
     for tree_size in "${tree_sizes[@]}"; do
-        store_file="testFiles/store_${tree_size}"   
+        store_file="../testFiles/store_${tree_size}"   
         echo "=== Testing Operation Size $operate_size and Data Size: $tree_size ==="
         time_arr=()
         total_time=0
@@ -30,23 +30,23 @@ for operate_size in "${operate_sizes[@]}"; do
 
         declare -a unique_prints=()
         unique_count=0
-        max_size=$((tree_size + 1))
 
         for i in {1..10}; do
             echo "  [Run $i]"
-            start_time=$(date +%s%6N)
+            start_time=$(date +%s%N)
 
-            stash_output=$(./path_oram <<EOF
-store $store_file -s -rp
-operate $operate_file -s -rp
+            stash_output=$(./../path_oram <<EOF
+store $store_file -s
+operate $operate_file -s
 print sizes
 exit
 EOF
             )
-            end_time=$(date +%s%6N)
+            end_time=$(date +%s%N)
             elapsed_ns=$((end_time - start_time))
-            total_time=$((total_time + elapsed_ns))
-            time_arr+=($elapsed_ns)
+            elapsed_ms=$((elapsed_ns / 1000000))
+            total_time=$((total_time + elapsed_ms))
+            time_arr+=($elapsed_ms)
 
 
 
@@ -66,6 +66,7 @@ EOF
             fi
 
 
+            
             stash_lines=$(echo "$stash_output" | grep "Tree\[")
 
             total_stash=0
@@ -81,6 +82,7 @@ EOF
             stash_sizes+=($total_stash)
 
 
+
             min_time=${time_arr[0]}
             max_time=${time_arr[0]}
             sum_time=0
@@ -92,7 +94,7 @@ EOF
             done
             avg_time=$((sum_time / 10))
 
-            echo "    Time: ${elapsed_ns} μs | Stash Size: $total_stash"
+            echo "    Time: ${elapsed_ms} ms | Stash Size: $total_stash"
         done
 
         if (( unique_count == 1 )); then
@@ -125,7 +127,7 @@ EOF
         avg_time=$((total_time / 10))
 
         echo "===> [Summary for size : $tree_size and operation size : $operate_size]:"
-        echo "     Avg Time   : $avg_time μs"
+        echo "     Avg Time   : $avg_time ms"
         echo "     Stash Size : avg=$avg_stash, min=$min_stash, max=$max_stash"
         echo
 
