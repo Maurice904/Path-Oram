@@ -5,7 +5,7 @@
 
 # $ chmod +x no_opt.sh
 # $ ./no_opt.sh > no_opt_result.txt
-csv_file="result_no_opt.csv"
+csv_file="result_standard_path_oram.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 

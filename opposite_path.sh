@@ -1,12 +1,12 @@
 #!/bin/bash
-# 4. ring oram + forest: 2 + 3
-# store <testFiles> -s -rp
+# 5. ring oram : 2
+# store <testFiles> -s -rp --max-size <bigger than data size>
 # operate <testFiles> -s -rp 
 
 
-# $ chmod +x ring_oram_forest.sh
-# $ ./ring_oram_forest.sh > ring_oram_forest_result.txt
-csv_file="result_ring_oram_forest.csv"
+# $ chmod +x ring_oram.sh
+# $ ./ring_oram.sh > ring_oram_result.txt
+csv_file="result_opposite_path.csv"
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
 
@@ -19,9 +19,11 @@ mkdir -p testFiles
 store_file_1mil="testFiles/store_1000000"
 store_file_200k="testFiles/store_200000"
 
+
 for operate_size in "${operate_sizes[@]}"; do
     operate_file="testFiles/operate_${operate_size}"
     for tree_size in "${tree_sizes[@]}"; do
+        max_size=$((tree_size + 1))
         store_file="testFiles/store_${tree_size}"   
         echo "=== Testing Operation Size $operate_size and Data Size: $tree_size ==="
         time_arr=()
@@ -30,15 +32,14 @@ for operate_size in "${operate_sizes[@]}"; do
 
         declare -a unique_prints=()
         unique_count=0
-        max_size=$((tree_size + 1))
 
         for i in {1..10}; do
             echo "  [Run $i]"
             start_time=$(date +%s%N)
 
             stash_output=$(./path_oram <<EOF
-store $store_file -s -rp
-operate $operate_file -s -rp
+store $store_file -s -rp --max-size $max_size
+operate $operate_file -s -rp 
 print sizes
 exit
 EOF

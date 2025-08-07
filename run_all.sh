@@ -19,19 +19,19 @@ python3 scripts/fileGen.py operation 1000000 --output "testFiles/operate_1000000
 
 chmod +x *.sh
 
-# echo "==== Running no_opt.sh ===="
-# bash no_opt.sh > no_opt_result.txt
+echo "==== Running Standard_path_oram.sh ===="
+bash shell/Standard_path_oram.sh > results/Standard_path_oram_result.txt
 
-echo "==== Running forest_opt.sh ===="
-bash forest_opt.sh > forest_opt_result.txt
+echo "==== Running forest_oram.sh ===="
+bash shell/forest_oram.sh > results/forest_oram_result.txt
 
-echo "==== Running ring_oram.sh ===="
-bash ring_oram.sh > ring_oram_result.txt
+echo "==== Running opposite_path.sh ===="
+bash shell/opposite_path.sh > results/opposite_path_result.txt
 
-echo "==== Running ring_oram_forest.sh ===="
-bash ring_oram_forest.sh > ring_oram_forest_result.txt
+echo "==== Running opposite_path_forest.sh ===="
+bash shell/opposite_path_forest.sh > results/opposite_path_forest_result.txt
 
 echo "==== Running random_rr_forest.sh ===="
-bash random_rr_forest.sh > random_rr_forest_result.txt
+bash shell/random_rr_forest.sh > results/random_rr_forest_result.txt
 
 echo "==== All scripts finished! ===="
