@@ -5,7 +5,7 @@
 
 # $ chmod +x no_opt.sh
 # $ ./no_opt.sh > no_opt_result.txt
-csv_file="result_standard_path_oram.csv"
+csv_file="../plot/csv/result_standard_path_oram.csv"
 
 
 echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max_time" > "$csv_file"
@@ -13,16 +13,15 @@ echo "operate_size,tree_size,avg_stash,min_stash,max_stash,avg_time,min_time,max
 operate_sizes=(100000 200000 500000 700000 1000000)
 tree_sizes=(200000 1000000)
 
-mkdir -p testFiles
 
 
-store_file_1mil="testFiles/store_1000000"
-store_file_200k="testFiles/store_200000"
+store_file_1mil="../testFiles/store_1000000"
+store_file_200k="../testFiles/store_200000"
 
 for operate_size in "${operate_sizes[@]}"; do
-    operate_file="testFiles/operate_${operate_size}"
+    operate_file="../testFiles/operate_${operate_size}"
     for tree_size in "${tree_sizes[@]}"; do
-        store_file="testFiles/store_${tree_size}"   
+        store_file="../testFiles/store_${tree_size}"   
         echo "=== Testing Operation Size $operate_size and Data Size: $tree_size ==="
         time_arr=()
         total_time=0
@@ -36,7 +35,7 @@ for operate_size in "${operate_sizes[@]}"; do
             echo "  [Run $i]"
             start_time=$(date +%s%6N)
 
-            stash_output=$(./path_oram <<EOF
+            stash_output=$(./../path_oram <<EOF
 store $store_file --max-size $max_size -s
 operate $operate_file -s
 print sizes
