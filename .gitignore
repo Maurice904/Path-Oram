@@ -5,3 +5,10 @@
 *.exe
 
 dbout
+
+# Compiled executables
+path_oram
+path_oram.exe
+test_runner
+test_runner.exe
+
